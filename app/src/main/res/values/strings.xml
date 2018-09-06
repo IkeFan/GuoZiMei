@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">GuoZiMei</string>\
+    <string name="scan">扫一扫</string>
+    <string name="location">位置</string>
+    <string name="search_hot_info">搜索热门健康咨询</string>
+    <string name="key_search">请输入关键词</string>
+    <string name="search_you_want">搜索您需要的内容</string>
+    <string name="home">首页</string>
+    <string name="store">商城</string>
+    <string name="hospital">医馆</string>
+    <string name="mine">我的</string>
+    <string name="name">名字</string>
+    <string name="person_info">个人信息</string>
+    <string name="collections">收藏</string>
+    <string name="attentions">关注</string>
+    <string name="discounts">红包卡券</string>
+    <string name="steps">足迹</string>
+</resources>
