@@ -48,7 +48,7 @@ class StoreFragment : BaseFragment<StorePresenter>() {
     }
 
     override fun initData() {
-        mIPresenter.getTestProduct(0)
+        mIPresenter.getTestProduct(0, false)
     }
 
     override fun initEvent() {

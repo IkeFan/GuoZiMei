@@ -16,35 +16,39 @@ import javax.inject.Inject
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class StorePresenter @Inject constructor() :IPresenter<IView>(){
-    fun getProduct(type:Int){
+class StorePresenter @Inject constructor() : IPresenter<IView>() {
+    fun getProduct(type: Int) {
 
     }
 
-    fun getTestProduct(type:Int){
-        var data = StoreBean()
-        data.status==1
-        mV.showLoading()
-        data.data = listOf(
-                StoreBean.Product("限量预售300盒", "武当山初生蛋",
-                R.mipmap.banner_bg,"武当山","180.00",2457),
+    fun getTestProduct(type: Int, showLoading: Boolean) {
+        if (showLoading) {
+            mV.showLoading()
+        }
+        mHandler.postDelayed({
+            var data = StoreBean()
+            data.status == 1
+            data.data = listOf(
+                    StoreBean.Product("限量预售300盒", "武当山初生蛋",
+                            R.mipmap.banner_bg, "武当山", "180.00", 2457),
 
-                StoreBean.Product("限量预售100盒", "武当山野生菌",
-                R.mipmap.pic_keep_health1,"武当山","380.00",5014),
+                    StoreBean.Product("限量预售100盒", "武当山野生菌",
+                            R.mipmap.pic_keep_health1, "武当山", "380.00", 5014),
 
-                StoreBean.Product("限量预售200盒", "娄底初生蛋",
-                        R.mipmap.pic_keep_health1,"四川娄底","180.00",1450),
+                    StoreBean.Product("限量预售200盒", "娄底初生蛋",
+                            R.mipmap.pic_keep_health1, "四川娄底", "180.00", 1450),
 
 
-                StoreBean.Product("限量预售200盒", "武当山野生干菌",
-                        R.mipmap.pic_keep_health1,"武当山","980.00",1450),
+                    StoreBean.Product("限量预售200盒", "武当山野生干菌",
+                            R.mipmap.pic_keep_health1, "武当山", "980.00", 1450),
 
-                StoreBean.Product("限量预售200盒", "四川野生菌",
-                        R.mipmap.pic_keep_health1,"四川娄底","280.00",135)
-                )
-               mHandler.postDelayed({
-                   mV.hidLoading()
-                   mV.requestSuccess(data)
-               }, 1000)
+                    StoreBean.Product("限量预售200盒", "四川野生菌",
+                            R.mipmap.pic_keep_health1, "四川娄底", "280.00", 135)
+            )
+            if (showLoading) {
+                mV.hidLoading()
+            }
+            mV.requestSuccess(data)
+        }, 500)
     }
 }

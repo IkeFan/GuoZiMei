@@ -2,11 +2,16 @@ package com.mmy.guozimei.modules.home.fragments
 
 import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
+import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseFragment
+import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
+import com.mmy.guozimei.common.DaggerFragmentComponent
+import com.mmy.guozimei.common.IViewModule
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
+import com.mmy.guozimei.modules.home.presenters.HomePresenter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -19,15 +24,25 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class HomeFragment: BaseFragment<IPresenter<*>>() {
-    val mMastersAdapter = HomeMastersAdapter(R.layout.adapter_master)
-
-    override fun requestSuccess(any: IBean) {
+class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadMoreListener {
+    override fun onLoadMoreRequested() {
 
     }
 
-    override fun setupDagger(appComponent: AppComponent) {
+    val mMastersAdapter = HomeMastersAdapter(R.layout.adapter_master)
 
+    override fun requestSuccess(any: IBean) {
+        when(any){
+            is HomeBean -> mMastersAdapter.setNewData(any.data)
+        }
+    }
+
+    override fun setupDagger(appComponent: AppComponent) {
+        DaggerFragmentComponent.builder()
+                .appComponent(appComponent)
+                .iViewModule(IViewModule(this))
+                .build().
+                inject(this)
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_home
@@ -35,11 +50,10 @@ class HomeFragment: BaseFragment<IPresenter<*>>() {
     override fun initView() {
         home_master_list.adapter = mMastersAdapter
         home_master_list.layoutManager = LinearLayoutManager(getAc())
-        mMastersAdapter.initVirData()
         mMastersAdapter.setEnableLoadMore(true)
     }
 
     override fun initData() {
-
+        mIPresenter.getTestData(false)
     }
 }

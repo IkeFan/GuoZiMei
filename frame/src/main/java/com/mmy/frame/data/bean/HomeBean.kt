@@ -7,7 +7,7 @@ import java.io.Serializable
  * Created by fanfuqiang on 2018/9/7.
  */
 class HomeBean: IBean() {
-
+    var data:List<GreatMaster>? = null
     class GreatMaster(
         var name:String? = null,
         var level:Int? = 0,
