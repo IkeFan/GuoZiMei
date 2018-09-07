@@ -32,4 +32,21 @@
     <string name="painting_master">国画大师</string>
     <string name="written_master">书法大师</string>
     <string name="noun_master">古琴大师</string>
+
+    <string name="complex_sort">综合排序</string>
+    <string name="sale_sort">销量优先</string>
+    <string name="filtrate">筛选</string>
+    <string name="origin_place">产地</string>
+    <string name="new_product">新品</string>
+
+    <string name="acupuncture_cure">针灸疗法</string>
+    <string name="acupuncture">针灸</string>
+    <string name="cupping">拔罐</string>
+    <string name="massage">推拿</string>
+    <string name="cure_book">看诊预约</string>
+    <string name="cure_consult">看诊咨询</string>
+    <string name="medicate_diet">药膳食谱</string>
+    <string name="special_medicate">特色药膳</string>
+    <string name="special_cure">特色理疗</string>
+    <string name="company_hospital">合作医院</string>
 </resources>

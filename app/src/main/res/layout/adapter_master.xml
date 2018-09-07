@@ -57,12 +57,16 @@
             android:id="@+id/item_honor"
             android:layout_marginTop="5dp"
             style="@style/text_small"
+            android:gravity="left"
+            android:layout_width="match_parent"
             android:drawableLeft="@mipmap/ic_honor"
             android:drawablePadding="4dp"
             android:text="@string/master_middle"/>
         <TextView
             android:id="@+id/item_achievements"
             android:layout_marginTop="5dp"
+            android:gravity="left"
+            android:layout_width="match_parent"
             style="@style/text_small"
             android:text="@string/master_middle"/>
     </LinearLayout>

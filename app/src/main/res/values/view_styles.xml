@@ -10,10 +10,9 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="TextBaseWrap">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="TextBaseWrap" parent="BaseWrap">
         <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/base_text</item>
     </style>
 
     <style name="text_small" parent="TextBaseWrap">

@@ -1,32 +1,471 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/store"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:background="@color/main_green"/>
-    <EditText
-        android:id="@+id/v_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:drawablePadding="10dp"
-        android:height="30dp"
-        android:lines="1"
-        android:background="@drawable/shape_big_white"
-        android:drawableStart="@mipmap/ic_search"
-        android:backgroundTint="#f5f5f5"
-        android:hint="@string/search_you_want"
-        />
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:orientation="vertical">
 
-</LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_collapseParallaxMultiplier="0.5"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@mipmap/bg_tab"
+                    android:padding="10dp"
+                    >
+
+                    <ImageView
+                        style="@style/BaseWrap"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:background="@mipmap/bg_hosptital_title"
+                        android:src="@mipmap/title_hospital"
+                        />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/v_medicate_diet"
+                        style="@style/home_text_black"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@mipmap/ic_medicate_diet"
+                        android:text="@string/medicate_diet"/>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:background="@color/green"/>
+
+                    <TextView
+                        android:id="@+id/v_acupuncture"
+                        style="@style/home_text_black"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@mipmap/ic_acupuncture"
+                        android:text="@string/acupuncture_cure"/>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:background="@color/green"/>
+
+                    <TextView
+                        android:id="@+id/v_cure_book"
+                        style="@style/home_text_black"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@mipmap/ic_hospital_book"
+                        android:text="@string/cure_book"/>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:background="@color/green"/>
+
+                    <TextView
+                        android:id="@+id/v_consult"
+                        style="@style/home_text_black"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@mipmap/ic_hospital_consult"
+                        android:text="@string/cure_consult"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/line_light"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/green"/>
+
+                    <TextView
+                        style="@style/text_middle"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/special_medicate"
+                        android:textColor="#757575"/>
+
+                    <TextView
+                        style="@style/text_small"
+                        android:layout_alignParentRight="true"
+                        android:text="---+ 更多"
+                        android:textColor="#adadad"/>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW">
+
+                        <ImageView
+                            android:id="@+id/special_img1"
+                            style="@style/BaseWrap"
+                            android:layout_alignParentRight="true"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/pic_special_1"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/special_img1"
+                            android:layout_alignStart="@+id/special_img1"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="红枣银耳羹"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/special_img2"
+                            style="@style/BaseWrap"
+                            android:src="@mipmap/pic_special_2"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/special_img2"
+                            android:layout_alignStart="@+id/special_img2"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="五谷杂粮"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/special_img3"
+                            style="@style/BaseWrap"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/pic_special_3"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/special_img3"
+                            android:layout_alignStart="@+id/special_img3"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="红豆莲子粥"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="15dp"
+                        android:layout_centerVertical="true"
+                        android:background="@color/green"/>
+
+                    <TextView
+                        style="@style/text_middle"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/special_cure"
+                        android:textColor="#757575"/>
+
+                    <TextView
+                        style="@style/text_small"
+                        android:layout_alignParentRight="true"
+                        android:text="---+ 更多"
+                        android:textColor="#adadad"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW">
+
+                        <ImageView
+                            android:id="@+id/cure_img1"
+                            style="@style/BaseWrap"
+                            android:layout_alignParentRight="true"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/pic_cure1"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/cure_img1"
+                            android:layout_alignStart="@+id/cure_img1"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="@string/acupuncture"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/cure_img2"
+                            style="@style/BaseWrap"
+                            android:src="@mipmap/pic_cure2"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/cure_img2"
+                            android:layout_alignStart="@+id/cure_img2"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="@string/cupping"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        style="@style/BaseWeightWrapW"
+                        android:layout_marginLeft="10dp">
+
+                        <ImageView
+                            android:id="@+id/cure_img3"
+                            style="@style/BaseWrap"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/pic_cure3"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/cure_img3"
+                            android:layout_alignStart="@+id/cure_img3"
+                            android:alpha="0.45"
+                            android:background="@color/main_text_bg"
+                            android:padding="5dp"
+                            >
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:text="---"
+                                android:textColor="@color/green"/>
+
+                            <TextView
+                                style="@style/mine_text_black"
+                                android:layout_centerHorizontal="true"
+                                android:text="@string/massage"
+                                android:textColor="@color/white"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/main_green"
+                android:padding="0dp"
+                app:layout_collapseMode="pin">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/hospital_title"
+                        style="@style/text_large"
+                        android:layout_centerInParent="true"
+                        android:text="@string/hospital"
+                        android:textColor="@color/white"
+                        />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+            <EditText
+                app:layout_collapseMode="pin"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/v_search_hospital"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/v_scan"
+                android:layout_toRightOf="@+id/v_location"
+                android:height="40dp"
+                android:backgroundTint="#f5f5f5"
+                android:textSize="@dimen/text_middle_size"
+                android:background="@drawable/shape_big_white"
+                android:drawableLeft="@mipmap/ic_search"
+                android:drawablePadding="8dp"
+                android:hint="@string/search_you_want"
+                android:lines="1" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:fillViewport="false"
+            app:layout_scrollFlags="scroll"
+            >
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:background="@color/green"/>
+
+            <TextView
+                style="@style/text_middle"
+                android:layout_marginLeft="10dp"
+                android:text="@string/company_hospital"
+                android:textColor="#757575"/>
+
+            <TextView
+                android:id="@+id/more_company"
+                style="@style/text_small"
+                android:layout_alignParentRight="true"
+                android:text="---+ 更多"
+                android:textColor="#adadad"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/more_company"
+            android:background="@color/line_light"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hospital_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -3,7 +3,7 @@
     <color name="colorPrimary">#03c498</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="transparent">#00ffffff</color>
-    <color name="normal_text_color">#504f4f</color>
+    <color name="normal_text_color">#bbbbbb</color>
     <color name="devider">#bcbcbc</color>
     <!--字体显示颜色-->
     <color name="mow_text_color">#333333</color>

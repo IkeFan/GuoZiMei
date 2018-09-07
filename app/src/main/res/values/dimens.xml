@@ -1,7 +1,8 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="person_portrait_radius">75dp</dimen>
+    <dimen name="text_mini_size">8sp</dimen>
     <dimen name="text_small_size">10sp</dimen>
     <dimen name="text_middle_size">13sp</dimen>
-    <dimen name="text_large_size">26sp</dimen>
+    <dimen name="text_large_size">18sp</dimen>
 </resources>

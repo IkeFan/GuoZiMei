@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/banner_front"/>
+    <TextView
+        android:id="@+id/item_new_tag"
+        style="@style/text_small"
+        android:textSize="@dimen/text_mini_size"
+        android:background="@mipmap/ic_new_tag"
+        android:textColor="@color/white"
+        android:text="@string/new_product"
+        />
+
+    <LinearLayout
+        style="@style/BaseWrap"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/item_img"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/item_title"
+            style="@style/text_large"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="5dp"
+            android:text="【武当山初生蛋】限量预售300盒"
+            android:textColor="@color/text_black"/>
+
+        <TextView
+            android:id="@+id/item_name"
+            style="@style/text_middle"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@mipmap/ic_name_tag"
+            android:drawablePadding="5dp"
+            android:text="名称：武当山初生蛋"
+            />
+
+        <TextView
+            android:id="@+id/item_place"
+            style="@style/text_middle"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@mipmap/ic_origin"
+            android:drawablePadding="5dp"
+            android:text="产地：武当山"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_price"
+                style="@style/text_large"
+                android:layout_marginTop="5dp"
+                android:text="180.00"
+                android:textColor="@color/price_color"/>
+
+            <TextView
+                android:id="@+id/item_payed"
+                style="@style/text_small"
+                android:layout_width="85dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="5dp"
+                android:text="已有34000人付款..."
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

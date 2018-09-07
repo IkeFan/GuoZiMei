@@ -2,6 +2,7 @@ package com.mmy.guozimei.common
 
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.annotation.FragmentScope
+import com.mmy.guozimei.modules.store.fragments.StoreFragment
 import dagger.Component
 
 /**
@@ -19,4 +20,5 @@ import dagger.Component
 interface FragmentComponent {
     //inject the Fragment here which implement IView, just like below
 //    fun inject(demoFragment: DemoFragment)
+    fun inject(storeFragment: StoreFragment)
 }
