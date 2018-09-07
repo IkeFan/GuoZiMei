@@ -1,10 +1,13 @@
 package com.mmy.guozimei.modules.home.fragments
 
+import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
+import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * @file       HomeFragment.kt
@@ -17,6 +20,8 @@ import com.mmy.guozimei.R
  *             version: zsr, 2017-09-23
  */
 class HomeFragment: BaseFragment<IPresenter<*>>() {
+    val mMastersAdapter = HomeMastersAdapter(R.layout.adapter_master)
+
     override fun requestSuccess(any: IBean) {
 
     }
@@ -28,7 +33,10 @@ class HomeFragment: BaseFragment<IPresenter<*>>() {
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     override fun initView() {
-
+        home_master_list.adapter = mMastersAdapter
+        home_master_list.layoutManager = LinearLayoutManager(getAc())
+        mMastersAdapter.initVirData()
+        mMastersAdapter.setEnableLoadMore(true)
     }
 
     override fun initData() {

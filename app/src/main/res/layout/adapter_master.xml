@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/item_portrait"
+        android:layout_width="@dimen/person_portrait_radius"
+        android:layout_height="@dimen/person_portrait_radius"
+        android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_default_portrait"/>
+    <LinearLayout
+        android:id="@+id/info_container"
+        style="@style/BaseWrap"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/item_portrait">
+
+        <LinearLayout
+            style="@style/BaseWrap"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/info_container"
+            >
+            <TextView
+                style="@style/text_middle"
+                android:layout_width="80dp"
+                android:text="称呼"
+                android:gravity="left"
+                android:id="@+id/item_name"
+                android:textColor="@color/main_black"
+                />
+            <ImageView
+                android:id="@+id/item_male_iv"
+                android:layout_marginLeft="8dp"
+                style="@style/BaseWrap"
+                android:src="@mipmap/ic_male"/>
+
+            <TextView
+                android:id="@+id/item_age"
+                style="@style/text_small"
+                android:layout_marginLeft="5dp"
+                android:text="66" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_level"
+            android:layout_marginTop="5dp"
+            style="@style/text_small"
+            android:drawableLeft="@mipmap/ic_level"
+            android:drawablePadding="4dp"
+            android:text="@string/master_middle"/>
+
+        <TextView
+            android:id="@+id/item_honor"
+            android:layout_marginTop="5dp"
+            style="@style/text_small"
+            android:drawableLeft="@mipmap/ic_honor"
+            android:drawablePadding="4dp"
+            android:text="@string/master_middle"/>
+        <TextView
+            android:id="@+id/item_achievements"
+            android:layout_marginTop="5dp"
+            style="@style/text_small"
+            android:text="@string/master_middle"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/item_type"
+        android:layout_alignParentRight="true"
+        style="@style/text_middle"
+        android:layout_marginTop="10dp"
+        android:text="@string/master_middle"/>
+
+    <LinearLayout
+        style="@style/BaseWrap"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/info_container"
+        >
+        <TextView
+            android:id="@+id/item_learn"
+            style="@style/btn_middle"
+            android:textColor="@color/white"
+            android:background="@drawable/green_btn_bg"
+            android:layout_marginRight="10dp"
+            android:text="学习咨询"/>
+        <TextView
+            android:id="@+id/item_book_now"
+            style="@style/btn_middle"
+            android:textColor="@color/white"
+            android:background="@drawable/yellow_btn_bg"
+            android:text="立刻预约"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -15,4 +15,21 @@
     <string name="attentions">关注</string>
     <string name="discounts">红包卡券</string>
     <string name="steps">足迹</string>
+
+    <string name="health_knowledge">健康知识</string>
+    <string name="health_solutions">健康方案</string>
+    <string name="health_classes">健康课堂</string>
+    <string name="health_test">健康测试</string>
+    <string name="questions_answers">问答</string>
+    <string name="needed">需求</string>
+    <string name="activities">活动</string>
+    <string name="book">预约</string>
+    <string name="more">更多</string>
+    <string name="millet_health">辟谷养生</string>
+    <string name="master_primary">初级大师</string>
+    <string name="master_middle">中级大师</string>
+    <string name="master_high">高级大师</string>
+    <string name="painting_master">国画大师</string>
+    <string name="written_master">书法大师</string>
+    <string name="noun_master">古琴大师</string>
 </resources>
