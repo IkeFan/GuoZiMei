@@ -1,6 +1,5 @@
 package com.mmy.guozimei.modules.store.fragments
 
-import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseFragment
@@ -58,34 +57,21 @@ class StoreFragment : BaseFragment<StorePresenter>() {
     }
 
     override fun initEvent() {
-        tab_bar_1.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
+        radio_group1.setOnCheckedChangeListener({_,id->
+            when(id){
+                R.id.store_all_cb ->{ mIPresenter.getTestProduct(0, true)}
+                R.id.store_wudangshan_cb -> { mIPresenter.getTestProduct(0, true)}
+                R.id.store_sichuan_cb -> { mIPresenter.getTestProduct(0, true)}
+                R.id.store_other_cb -> { mIPresenter.getTestProduct(0, true)}
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                mIPresenter.getTestProduct(tab?.position!!,true)
-            }
-
         })
 
-        tab_bar_2.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
+        radio_group2.setOnCheckedChangeListener({ _,id ->
+            when(id){
+                R.id.store_compex_cb -> { mIPresenter.getTestProduct(0, true)}
+                R.id.store_sale_cb-> { mIPresenter.getTestProduct(0, true) }
+                R.id.store_screen -> { mIPresenter.getTestProduct(0, true) }
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                mIPresenter.getTestProduct(tab?.position!!,true)
-            }
-
         })
     }
 }

@@ -14,7 +14,7 @@
         >
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="95dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
@@ -58,20 +58,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_scrollFlags="scroll"
-            android:background="@mipmap/bg_tab"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             >
             <RadioGroup
                 android:id="@+id/radio_group1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:layout_marginTop="6dp"
+                android:background="@mipmap/bg_tab"
                 >
                 <RadioButton
                     android:id="@+id/store_all_cb"
@@ -96,74 +94,51 @@
                     />
             </RadioGroup>
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_bar_1"
-                android:layout_marginTop="5dp"
+            <RadioGroup
+                android:id="@+id/radio_group2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@mipmap/bg_tab"
-                android:fillViewport="false"
-                app:layout_scrollFlags="scroll"
-                app:tabIndicatorColor="@color/main_green"
-                app:tabIndicatorHeight="2.0dp"
-                app:tabSelectedTextColor="#151515"
-                app:tabTextColor="@color/normal_text_color"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp"
                 >
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:icon="@mipmap/ic_store_all"
+                <RadioButton
+                    android:id="@+id/store_compex_cb"
+                    android:checked="true"
+                    style="@style/BaseWeightWrapW"
+                    android:textSize="@dimen/text_middle_size"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/complex_sort"
+                    android:textColor="@color/text_selector"
                     />
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:icon="@mipmap/ic_store_wudang" />
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:icon="@mipmap/ic_store_sichuan" />
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:icon="@mipmap/ic_store_other" />
-            </android.support.design.widget.TabLayout>
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_bar_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/white"
-                android:fillViewport="false"
-                app:layout_scrollFlags="scroll"
-                app:tabIndicatorColor="@color/main_green"
-                app:tabIndicatorHeight="2.0dp"
-                app:tabSelectedTextColor="#151515"
-                app:tabTextColor="@color/normal_text_color"
-                >
-
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:text="@string/complex_sort"/>
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
-                    android:text="@string/sale_sort" />
-
-                <android.support.design.widget.TabItem
-                    style="@style/CustomPicRadio"
+                <RadioButton
+                    android:id="@+id/store_sale_cb"
+                    style="@style/BaseWeightWrapW"
+                    android:button="@null"
+                    android:textSize="@dimen/text_middle_size"
+                    android:gravity="center"
+                    android:textColor="@color/text_selector"
+                    android:text="@string/sale_sort"
+                    />
+                <RadioButton
+                    android:id="@+id/store_screen"
+                    style="@style/BaseWeightWrapW"
+                    android:textColor="@color/text_selector"
+                    android:button="@null"
+                    android:textSize="@dimen/text_middle_size"
+                    android:gravity="center"
                     android:text="@string/filtrate"
                     />
-            </android.support.design.widget.TabLayout>
-
+            </RadioGroup>
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
         <android.support.v7.widget.RecyclerView

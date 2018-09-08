@@ -2,6 +2,7 @@ package com.mmy.guozimei.modules.home.fragments
 
 import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseFragment
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadMoreListener {
+class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     override fun onLoadMoreRequested() {
 
     }
@@ -68,9 +69,18 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             }
 
         })
+
+        arrayOf(v_location, v_scan, v_banner, v_knowledge, v_solution, v_solution_more, v_class,
+                card_knowledge_one, card_knowledge_two, card_knowledge_three, card_knowledge_four,
+                iv_solution, iv_health_1, iv_health_2,
+                v_test, v_answer, v_needed, v_activities, v_book, v_knowledge_more, v_book_more).setViewListener(this)
     }
 
     override fun initData() {
         mIPresenter.getTestData(false)
+    }
+
+    override fun onClick(v: View?) {
+
     }
 }

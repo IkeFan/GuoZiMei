@@ -2,6 +2,7 @@ package com.mmy.guozimei.modules.hospital.fragments
 
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseFragment
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_hospital.*
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.RequestLoadMoreListener {
+class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     override fun onLoadMoreRequested() {
 
     }
@@ -59,5 +60,15 @@ class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.Req
 
     override fun initData() {
         mIPresenter.getTestHospitals(false)
+    }
+
+    override fun initEvent() {
+        arrayOf(v_medicate_diet, v_cure_book, v_acupuncture, v_consult,
+                special_img1, special_img2, special_img3, special_more,
+                cure_img1, cure_img2, cure_img3, cure_more, hospital_more).setViewListener(this)
+    }
+
+    override fun onClick(v: View?) {
+
     }
 }

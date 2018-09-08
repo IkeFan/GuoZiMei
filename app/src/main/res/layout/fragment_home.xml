@@ -11,7 +11,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="650dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
@@ -160,10 +160,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@color/line_light"
-                    android:padding="6dp">
+                    >
 
                     <ImageView
                         style="@style/BaseWrap"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_centerHorizontal="true"
                         android:src="@mipmap/title_health_knowledge" />
 
@@ -338,12 +340,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@color/line_light"
-                    android:padding="6dp">
+                    >
 
                     <ImageView
+                        android:layout_marginTop="5dp"
                         style="@style/BaseWrap"
                         android:layout_centerHorizontal="true"
-                        android:src="@mipmap/title_book" />
+                        android:src="@mipmap/title_book"
+                        android:layout_marginBottom="5dp"/>
 
                     <TextView
                         android:id="@+id/v_book_more"
@@ -367,18 +371,22 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp">
-
+                    android:layout_marginRight="10dp"
+                    >
                     <View
                         android:id="@+id/v_line"
                         android:layout_width="1dp"
                         android:layout_height="10dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_centerVertical="true"
                         android:background="@color/colorPrimary" />
 
                     <TextView
                         style="@style/text_small"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="6dp"
                         android:layout_toRightOf="@+id/v_line"
                         android:text="@string/millet_health" />
 
