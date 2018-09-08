@@ -215,7 +215,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center"
                                 android:text="流汗是自律人生的礼赞"
-                                android:textColor="@color/colorPrimary" />
+                                android:textColor="@color/green" />
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
 
@@ -251,7 +251,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center"
                                 android:text="流汗是自律人生的礼赞"
-                                android:textColor="@color/colorPrimary" />
+                                android:textColor="@color/green" />
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
 
@@ -289,7 +289,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center"
                                 android:text="流汗是自律人生的礼赞"
-                                android:textColor="@color/colorPrimary" />
+                                android:textColor="@color/green" />
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
 
@@ -327,7 +327,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center"
                                 android:text="流汗是自律人生的礼赞"
-                                android:textColor="@color/colorPrimary" />
+                                android:textColor="@color/green" />
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
                 </RelativeLayout>
@@ -478,8 +478,8 @@
             app:layout_scrollFlags="scroll"
             app:tabIndicatorColor="@color/main_green"
             app:tabIndicatorHeight="2.0dp"
-            app:tabSelectedTextColor="@color/normal_text_color"
-            app:tabTextColor="#151515">
+            app:tabSelectedTextColor="#151515"
+            app:tabTextColor="@color/normal_text_color">
 
 
             <android.support.design.widget.TabItem

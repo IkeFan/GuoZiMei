@@ -49,4 +49,20 @@
     <string name="special_medicate">特色药膳</string>
     <string name="special_cure">特色理疗</string>
     <string name="company_hospital">合作医院</string>
+
+    <string name="health_report">健康报告</string>
+    <string name="my_cure">我的问诊</string>
+    <string name="cure_history">问诊记录</string>
+    <string name="order">订单</string>
+    <string name="book_car">购物车</string>
+    <string name="address">地址</string>
+    <string name="tickets">优惠券</string>
+    <string name="my_booking">我的预约</string>
+    <string name="book_buy">已购课程</string>
+    <string name="book_card">课程卡</string>
+    <string name="to_challenge">去挑战</string>
+    <string name="vip_center">会员中心</string>
+    <string name="service_center">客服中心</string>
+    <string name="want_company">我要合作</string>
+    <string name="about_cloud">关于健康云</string>
 </resources>

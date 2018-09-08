@@ -4,5 +4,5 @@
     <dimen name="text_mini_size">8sp</dimen>
     <dimen name="text_small_size">10sp</dimen>
     <dimen name="text_middle_size">13sp</dimen>
-    <dimen name="text_large_size">18sp</dimen>
+    <dimen name="text_large_size">22sp</dimen>
 </resources>

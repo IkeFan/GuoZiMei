@@ -29,6 +29,9 @@ class StoreFragment : BaseFragment<StorePresenter>() {
     override fun requestSuccess(any: IBean) {
        when(any){
            is StoreBean -> mAdapter.setNewData(any.data)
+           else ->{
+
+           }
        }
     }
 
@@ -45,6 +48,9 @@ class StoreFragment : BaseFragment<StorePresenter>() {
     override fun initView() {
         store_list.adapter = mAdapter
         store_list.layoutManager = LinearLayoutManager(getAc())
+//        mAdapter.setOnLoadMoreListener({
+//            mIPresenter.getTestProduct(1, true)
+//        }, store_list)
     }
 
     override fun initData() {
@@ -62,12 +68,12 @@ class StoreFragment : BaseFragment<StorePresenter>() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mIPresenter.getProduct(tab?.position!!)
+                mIPresenter.getTestProduct(tab?.position!!,true)
             }
 
         })
 
-        tab_bar_1.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+        tab_bar_2.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
@@ -77,7 +83,7 @@ class StoreFragment : BaseFragment<StorePresenter>() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mIPresenter.getProduct(tab?.position!!)
+                mIPresenter.getTestProduct(tab?.position!!,true)
             }
 
         })

@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/item_title"
-            style="@style/text_large"
+            style="@style/text_middle"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="5dp"
             android:text="【武当山初生蛋】限量预售300盒"
@@ -53,12 +53,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            >
 
             <TextView
                 android:id="@+id/item_price"
                 style="@style/text_large"
-                android:layout_marginTop="5dp"
                 android:text="180.00"
                 android:textColor="@color/price_color"/>
 
@@ -73,5 +73,10 @@
                 android:text="已有34000人付款..."
                 />
         </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_light"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 </RelativeLayout>

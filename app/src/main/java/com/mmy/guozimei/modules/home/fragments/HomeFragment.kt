@@ -1,9 +1,9 @@
 package com.mmy.guozimei.modules.home.fragments
 
+import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
-import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
@@ -51,6 +51,23 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         home_master_list.adapter = mMastersAdapter
         home_master_list.layoutManager = LinearLayoutManager(getAc())
         mMastersAdapter.setEnableLoadMore(true)
+    }
+
+    override fun initEvent() {
+        toolbar_tab.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                mIPresenter.getTestData(true)
+            }
+
+        })
     }
 
     override fun initData() {

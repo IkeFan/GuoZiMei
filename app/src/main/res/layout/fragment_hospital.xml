@@ -21,7 +21,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="105dp"
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_collapseParallaxMultiplier="0.5"
@@ -412,13 +412,14 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:background="@color/main_green"
                 android:padding="0dp"
                 app:layout_collapseMode="pin">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp">
                     <TextView
                         android:id="@+id/hospital_title"
                         style="@style/text_large"
@@ -431,7 +432,7 @@
 
             <EditText
                 app:layout_collapseMode="pin"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="65dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/v_search_hospital"
                 android:layout_width="match_parent"
@@ -458,6 +459,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 

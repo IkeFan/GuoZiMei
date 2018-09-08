@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+    >
 
     <ImageView
         android:id="@+id/item_logo"
         android:layout_width="@dimen/person_portrait_radius"
         android:layout_height="@dimen/person_portrait_radius"
-        android:src="@mipmap/pic_hospital1" />
+        android:src="@mipmap/pic_hospital1"/>
 
     <LinearLayout
         style="@style/BaseWrap"
@@ -17,11 +20,11 @@
 
         <TextView
             android:id="@+id/item_name"
-            style="@style/text_large"
+            style="@style/text_middle"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/ic_hospital_recommend"
             android:text="南方医科大顺德医院"
-            android:textColor="@color/text_black" />
+            android:textColor="@color/text_black"/>
 
         <TextView
             android:id="@+id/item_level"
@@ -32,7 +35,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:paddingTop="4dp"
-            android:text="三级甲等医院" />
+            android:text="三级甲等医院"/>
 
         <LinearLayout
             style="@style/BaseWrap"
@@ -42,24 +45,24 @@
                 android:id="@+id/item_payed"
                 style="@style/text_middle"
                 android:text="0"
-                android:textColor="@color/yellow" />
+                android:textColor="@color/yellow"/>
 
             <TextView
                 style="@style/text_small"
                 android:layout_marginLeft="8dp"
-                android:text="人付款" />
+                android:text="人付款"/>
 
             <TextView
                 android:id="@+id/item_common"
                 style="@style/text_middle"
                 android:layout_marginLeft="10dp"
                 android:text="0"
-                android:textColor="@color/yellow" />
+                android:textColor="@color/yellow"/>
 
             <TextView
                 style="@style/text_small"
                 android:layout_marginLeft="8dp"
-                android:text="评价" />
+                android:text="评价"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -74,14 +77,17 @@
         <TextView
             android:id="@+id/item_title"
             style="@style/BaseWeightWrapW"
-            android:text="全国百强 改善服务创新医院"
             android:layout_marginRight="10dp"
-            android:lines="1"/>
+            android:lines="1"
+            android:text="全国百强 改善服务创新医院"
+            android:textSize="@dimen/text_middle_size"/>
+
         <TextView
             android:id="@+id/item_location"
             style="@style/BaseWeightWrapW"
-            android:lines="1"
             android:drawableLeft="@mipmap/ic_location_gray"
-            android:text="佛山市顺德区伦敦街道办事处荔村村委会甲子1号" />
+            android:lines="1"
+            android:text="佛山市顺德区伦敦街道办事处荔村村委会甲子1号"
+            android:textSize="@dimen/text_middle_size"/>
     </LinearLayout>
 </RelativeLayout>
