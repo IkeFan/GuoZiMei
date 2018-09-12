@@ -55,12 +55,12 @@
     </style>
 
     <style name="mine_text_white" parent="TextBaseWrap">
-        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textSize">@dimen/text_middle_size</item>
         <item name="android:textColor">#f3fbf4</item>
     </style>
 
     <style name="mine_text_black" parent="TextBaseWrap">
-        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textSize">@dimen/text_middle_size</item>
         <item name="android:textColor">#333333</item>
     </style>
     

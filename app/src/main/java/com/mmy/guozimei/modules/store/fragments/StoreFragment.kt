@@ -2,6 +2,7 @@ package com.mmy.guozimei.modules.store.fragments
 
 import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
+import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.IBean
 import com.mmy.frame.data.bean.StoreBean
@@ -22,12 +23,26 @@ import kotlinx.android.synthetic.main.fragment_store.*
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class StoreFragment : BaseFragment<StorePresenter>() {
+class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLoadMoreListener{
+    override fun onLoadMoreRequested() {
+//        mIPresenter.getTestProduct(1, true)
+//        mAdapter.setEnableLoadMore(false)
+    }
+
     val mAdapter = StoreProductAdapter(R.layout.adapter_product)
 
     override fun requestSuccess(any: IBean) {
        when(any){
-           is StoreBean -> mAdapter.setNewData(any.data)
+           is StoreBean -> {
+               mAdapter.setNewData(any.data)
+//               if(mAdapter.data.isEmpty()) {
+//                   mAdapter.setNewData(any.data)
+//               }
+//               else if(any.data!=null){
+//                   mAdapter.addData(any.data!!)
+//                   mAdapter.loadMoreComplete()
+//               }
+           }
            else ->{
 
            }
@@ -47,9 +62,7 @@ class StoreFragment : BaseFragment<StorePresenter>() {
     override fun initView() {
         store_list.adapter = mAdapter
         store_list.layoutManager = LinearLayoutManager(getAc())
-//        mAdapter.setOnLoadMoreListener({
-//            mIPresenter.getTestProduct(1, true)
-//        }, store_list)
+        mAdapter.setOnLoadMoreListener(this, store_list)
     }
 
     override fun initData() {

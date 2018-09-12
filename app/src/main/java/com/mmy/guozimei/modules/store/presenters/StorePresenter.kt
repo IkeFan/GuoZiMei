@@ -28,22 +28,22 @@ class StorePresenter @Inject constructor() : IPresenter<IView>() {
         mHandler.postDelayed({
             var data = StoreBean()
             data.status == 1
-            data.data = listOf(
+            data.data = arrayListOf(
                     StoreBean.Product("限量预售300盒", "武当山初生蛋",
-                            R.mipmap.banner_bg, "武当山", "180.00", 2457),
+                            R.mipmap.store_product1, "武当山", "180.00", 2457),
 
                     StoreBean.Product("限量预售100盒", "武当山野生菌",
-                            R.mipmap.pic_keep_health1, "武当山", "380.00", 5014),
+                            R.mipmap.store_product3, "武当山", "380.00", 5014),
 
                     StoreBean.Product("限量预售200盒", "娄底初生蛋",
-                            R.mipmap.pic_keep_health1, "四川娄底", "180.00", 1450),
+                            R.mipmap.store_product2, "四川娄底", "180.00", 1450),
 
 
                     StoreBean.Product("限量预售200盒", "武当山野生干菌",
-                            R.mipmap.pic_keep_health1, "武当山", "980.00", 1450),
+                            R.mipmap.store_product4, "武当山", "980.00", 1450),
 
                     StoreBean.Product("限量预售200盒", "四川野生菌",
-                            R.mipmap.pic_keep_health1, "四川娄底", "280.00", 135)
+                            R.mipmap.store_product3, "四川娄底", "280.00", 135)
             )
             if (showLoading) {
                 mV.hidLoading()

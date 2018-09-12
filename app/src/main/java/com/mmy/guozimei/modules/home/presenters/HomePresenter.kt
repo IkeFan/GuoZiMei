@@ -36,4 +36,8 @@ class HomePresenter @Inject constructor() : IPresenter<IView>() {
             mV.requestSuccess(homeBean)
         }, 500)
     }
+
+    fun getBanner(){
+
+    }
 }
