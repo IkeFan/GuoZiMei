@@ -52,8 +52,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ScanPicCameraActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".ScanPicCameraActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".common.WebViewActivity">
         </activity>
     </application>
 

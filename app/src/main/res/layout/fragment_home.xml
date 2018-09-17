@@ -128,35 +128,36 @@
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/v_answer"
-                        style="@style/home_text_black"
-                        android:drawableTop="@mipmap/ic_health_answer"
-                        android:text="@string/questions_answers" />
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center"
-                        android:background="@color/line_color" />
-
-                    <TextView
-                        android:id="@+id/v_needed"
-                        style="@style/home_text_black"
-                        android:drawableTop="@mipmap/ic_need"
-                        android:text="@string/needed" />
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="15dp"
-                        android:layout_gravity="center"
-                        android:background="@color/line_color" />
 
                     <TextView
                         android:id="@+id/v_activities"
                         style="@style/home_text_black"
                         android:drawableTop="@mipmap/ic_activities"
                         android:text="@string/activities" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:background="@color/line_color" />
+
+                    <TextView
+                        android:id="@+id/v_master_in"
+                        style="@style/home_text_black"
+                        android:drawableTop="@mipmap/ic_need"
+                        android:text="@string/master_in" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="15dp"
+                        android:layout_gravity="center"
+                        android:background="@color/line_color" />
+
+                    <TextView
+                        android:id="@+id/v_home_consult"
+                        style="@style/home_text_black"
+                        android:drawableTop="@mipmap/ic_health_answer"
+                        android:text="@string/consult" />
 
                     <View
                         android:layout_width="0.5dp"

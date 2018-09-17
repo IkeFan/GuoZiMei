@@ -14,6 +14,7 @@ import com.mmy.guozimei.ScanPicCameraActivity
 import com.mmy.guozimei.common.BannerAdapter
 import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
+import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
 import com.mmy.guozimei.modules.home.presenters.HomePresenter
 import io.reactivex.Observable
@@ -116,6 +117,9 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         Observable.interval(3, 3, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { next ->
+                    if(overlap_pager==null){
+                        return@subscribe
+                    }
                     var currentIndex = overlap_pager.currentItem
                     if (++currentIndex == mBannerAdapter?.count) {
                         overlap_pager.currentItem = 1
@@ -128,7 +132,7 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         arrayOf(v_location, v_scan, v_knowledge, v_solution, v_solution_more, v_class,
                 card_knowledge_one, card_knowledge_two, card_knowledge_three, card_knowledge_four,
                 iv_solution, iv_health_1, iv_health_2,
-                v_test, v_answer, v_needed, v_activities, v_book, v_knowledge_more, v_book_more).setViewListener(this)
+                v_test, v_home_consult, v_master_in, v_activities, v_book, v_knowledge_more, v_book_more).setViewListener(this)
     }
 
     override fun initData() {
@@ -140,6 +144,17 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             R.id.v_scan -> {
                 openActivity(ScanPicCameraActivity::class.java)
             }
+            R.id.v_solution -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/program.html")
+            R.id.v_knowledge -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/health.html")
+            R.id.v_book -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/physician.html")
+            R.id.v_class -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/course.html")
+            R.id.v_activities -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/activity.html")
+            R.id.card_knowledge_one,
+            R.id.card_knowledge_two,
+            R.id.card_knowledge_three,
+            R.id.card_knowledge_four->{openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/smooth.html")}
+            R.id.v_home_consult -> openActivity(WebViewActivity::class.java, "url = " + "http://1.soowww.com/consult.html")
+            R.id.v_master_in -> openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/master.html")
         }
     }
 }

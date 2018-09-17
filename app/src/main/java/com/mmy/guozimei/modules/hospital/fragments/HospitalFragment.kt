@@ -11,6 +11,7 @@ import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
+import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.hospital.adapters.HospitalAdapter
 import com.mmy.guozimei.modules.hospital.presenters.HospitalPresenter
 import kotlinx.android.synthetic.main.fragment_hospital.*
@@ -69,6 +70,11 @@ class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.Req
     }
 
     override fun onClick(v: View?) {
-
+        when(v?.id){
+            R.id.v_consult -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/category.html")
+            R.id.v_cure_book->openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/doctor.html")
+            R.id.v_medicate_diet -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/medicined.html")
+            R.id.v_acupuncture -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/medical.html")
+        }
     }
 }
