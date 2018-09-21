@@ -7,7 +7,7 @@ package com.mmy.frame.data.bean;
  */
 
 public class IBean {
-    public int status ;
-    public String info;
-    public String sub;
+    public int code ;
+    public String msg;
+    public String url;
 }

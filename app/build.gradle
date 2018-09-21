@@ -13,35 +13,77 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            keyAlias 'mmy'
+            keyPassword 'lucas19911226'
+            storeFile file('./mmy_keystore.jks')
+            storePassword 'lucas19911226'
+            v2SigningEnabled false
+        }
+        debug {
+            keyAlias 'mmy'
+            keyPassword 'lucas19911226'
+            storeFile file('./mmy_keystore.jks')
+            storePassword 'lucas19911226'
         }
     }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '27.0.2'
 }
-ext{
+ext {
     supportVersion = "27.0.2"
     daggerVersion = "2.9"
+    retrofitVersion = "2.3.0"
+    mockitoVersion = "1.10.19"
+    okHttpVersion = "3.7.0"
+    robolectricVersion = "3.3.2"
+//    rxJavaVersion = "2.0.7"
+    rxAndroidVersion = "2.0.1"
+    glideVersion = "3.7.0"
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
+    implementation "com.android.support:recyclerview-v7:$supportVersion"
+    implementation "com.android.support:cardview-v7:$supportVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation project(':frame')
-
-
+    implementation project(':SweetAlertLibrary')
     testImplementation 'junit:junit:4.12'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+//    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+//    implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:2.2.1'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation project(':coverflow')
 }

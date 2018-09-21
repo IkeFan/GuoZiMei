@@ -128,6 +128,10 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                     }
                 }
 
+        mMastersAdapter.setOnItemClickListener { adapter, view, baseViewHolder, position ->
+            openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/introduction.html")
+        }
+
 
         arrayOf(v_location, v_scan, v_knowledge, v_solution, v_solution_more, v_class,
                 card_knowledge_one, card_knowledge_two, card_knowledge_three, card_knowledge_four,
@@ -149,6 +153,7 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             R.id.v_book -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/physician.html")
             R.id.v_class -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/course.html")
             R.id.v_activities -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/activity.html")
+            R.id.v_test -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/testing.html")
             R.id.card_knowledge_one,
             R.id.card_knowledge_two,
             R.id.card_knowledge_three,

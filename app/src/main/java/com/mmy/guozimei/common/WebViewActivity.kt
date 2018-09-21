@@ -1,7 +1,6 @@
 package com.mmy.guozimei.common
 
 import android.graphics.Bitmap
-import android.util.Log
 import android.view.KeyEvent
 import android.webkit.*
 import com.mmy.frame.AppComponent
@@ -72,7 +71,6 @@ class WebViewActivity : BaseActivity<IPresenter<*>>() {
 
     @JavascriptInterface
     fun backToActivity(){
-        Log.e(TAG,TAG+":backToActivity")
         finish()
     }
 

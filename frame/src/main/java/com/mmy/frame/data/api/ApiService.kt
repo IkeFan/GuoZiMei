@@ -34,14 +34,14 @@ interface ApiService {
 
     //注册
     @Multipart
-    @POST(Config.REGISTER)
+    @POST("Unit/register")
     fun register(@Part list: List<MultipartBody.Part>): Observable<RegisterBean>
 
     //发送验证码
     @Headers("needUserId:false")
     @FormUrlEncoded
-    @POST(Config.SEND_CODE)
-    fun sendCode(@Field("mobile") mobile: String): Observable<IBean>
+    @POST("Unit/sendcode")
+    fun sendCode(@Field("card") card: String): Observable<IBean>
 
     //验证code
     @Headers("needUserId:false")
@@ -52,7 +52,7 @@ interface ApiService {
     //登录
     @Headers("needUserId:false")
     @FormUrlEncoded
-    @POST(Config.LOGIN)
+    @POST("Unit/login")
     fun login(@Field("mobile") mobile: String, @Field("password") pwd: String): Observable<LoginBean>
 
     //获取token openid

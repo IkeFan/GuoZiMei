@@ -1,14 +1,17 @@
 package com.mmy.guozimei.modules.store.fragments
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
+import com.mmy.frame.adapter.BaseViewHolder
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.IBean
 import com.mmy.frame.data.bean.StoreBean
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
+import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.store.adapters.StoreProductAdapter
 import com.mmy.guozimei.modules.store.presenters.StorePresenter
 import kotlinx.android.synthetic.main.fragment_store.*
@@ -86,5 +89,12 @@ class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLo
                 R.id.store_screen -> { mIPresenter.getTestProduct(0, true) }
             }
         })
+
+        mAdapter.onItemClickListener = object :BaseQuickAdapter.OnItemClickListener{
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, baseViewHolder: BaseViewHolder?, position: Int) {
+                openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/details.html")
+            }
+
+        }
     }
 }

@@ -48,14 +48,6 @@ object Config {
     //融云聊天室禁言
     const val AN_EXCUSE = "http://api.cn.ronghub.com/chatroom/user/gag/add.json"
 
-    //注册
-    const val REGISTER = "Login/register"
-
-    //登录
-    const val LOGIN = "Login/login"
-
-    //发送验证码
-    const val SEND_CODE = "Login/sendSms"
 
     //发送验证码
     const val CHECK_CODE = "Check/smsCode"

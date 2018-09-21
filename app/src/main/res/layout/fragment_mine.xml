@@ -201,7 +201,7 @@
                 android:drawablePadding="5dp"
                 android:drawableTop="@mipmap/ic_health_report"
                 android:gravity="center"
-                android:text="@string/order"
+                android:text="@string/health_report"
                 android:textColor="#333333"
                 android:textSize="@dimen/text_middle_size"
                 />

@@ -39,7 +39,8 @@ class MineFragment : BaseFragment<IPresenter<*>>(), View.OnClickListener {
     }
 
     override fun initEvent() {
-        arrayOf(v_settings, mine_history,mine_cure,mine_ticket).setViewListener(this)
+        arrayOf(v_settings, mine_history,mine_cure,mine_ticket, mine_report, mine_car,mine_address,mine_card,
+                mine_booking).setViewListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -48,6 +49,11 @@ class MineFragment : BaseFragment<IPresenter<*>>(), View.OnClickListener {
             R.id.mine_history-> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/cureHistory")
             R.id.mine_cure->{openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myConsults")}
             R.id.mine_ticket-> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myTicket")
+            R.id.mine_report -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/healthReport")
+            R.id.mine_car -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/buyCar")
+            R.id.mine_address -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myAddress")
+            R.id.mine_card -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myClassCards")
+            R.id.mine_booking -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myAppointment")
         }
     }
 }

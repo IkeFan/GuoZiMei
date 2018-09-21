@@ -27,7 +27,7 @@ class StorePresenter @Inject constructor() : IPresenter<IView>() {
         }
         mHandler.postDelayed({
             var data = StoreBean()
-            data.status == 1
+            data.code = 1
             data.data = arrayListOf(
                     StoreBean.Product("限量预售300盒", "武当山初生蛋",
                             R.mipmap.store_product1, "武当山", "180.00", 2457),
