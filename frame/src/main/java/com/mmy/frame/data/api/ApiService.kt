@@ -33,9 +33,11 @@ interface ApiService {
 //fun searchWeater(@Query("cityId") cityId:String):Call<ResponseBody>
 
     //注册
-    @Multipart
+    @Headers("needUserId:false")
+    @FormUrlEncoded
     @POST("Unit/register")
-    fun register(@Part list: List<MultipartBody.Part>): Observable<RegisterBean>
+    fun register(@Field("card") card: String, @Field("code")code:String,
+                 @Field("password") password: String, @Field("invite")invite:String?=null): Observable<RegisterBean>
 
     //发送验证码
     @Headers("needUserId:false")
@@ -47,13 +49,13 @@ interface ApiService {
     @Headers("needUserId:false")
     @FormUrlEncoded
     @POST(Config.CHECK_CODE)
-    fun checkCode(@Field("mobile") mobile: String, @Field("code") code: String): Observable<IBean>
+    fun checkCode(@Field("card") card: String, @Field("code") code: String): Observable<IBean>
 
     //登录
     @Headers("needUserId:false")
     @FormUrlEncoded
     @POST("Unit/login")
-    fun login(@Field("mobile") mobile: String, @Field("password") pwd: String): Observable<LoginBean>
+    fun login(@Field("card") card: String, @Field("password") pwd: String): Observable<LoginBean>
 
     //获取token openid
     @Headers("needUserId:false")

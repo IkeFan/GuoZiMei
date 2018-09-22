@@ -6,6 +6,7 @@
     <string name="forget_password">忘记密码</string>
     <string name="password">密码</string>
     <string name="set_password">设置密码（不小于六位数）</string>
+    <string name="invite_input">邀请码（选填）</string>
     <string name="scan">扫一扫</string>
     <string name="login">登录</string>
     <string name="register">注册</string>

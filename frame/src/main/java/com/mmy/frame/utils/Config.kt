@@ -29,7 +29,7 @@ object Config {
     //splash_maimaiyun 时间
     val SPLASH_DISPLAY_TIME = 2000
 
-    const val HOST = "http://www.charitytown2018.com"
+    const val HOST = "http://4.soowww.com"
 
     //服务器地址
     val BASE_URL = "$HOST/Api/"
