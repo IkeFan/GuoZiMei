@@ -68,15 +68,14 @@ interface ApiService {
     fun getWXUserInfo(@Query("access_token") access_token: String,
                       @Query("openid") openid: String): Observable<WXUserInfoBean>
 
-    //搜索资助和执行方
-    @FormUrlEncoded
-    @POST("Project/search")
-    fun searchSupport(@Field("name") name: String): Observable<SearchSupportBean>
+    //获取banner图片
+    @GET("Index/banner")
+    fun getBanner(): Observable<BannerBean>
 
-    //添加资助方到项目
+    //获取大师列表
     @FormUrlEncoded
-    @POST("Project/upzhf")
-    fun addSupportInPro(@Field("zid") zid: Int, @Field("content") content: String): Observable<IBean>
+    @POST("Great/index")
+    fun getMasters(@Field("page") page: Int, @Field("limit") limit: Int?=10): Observable<HomeBean>
 
     //获取资助方列表
     @POST("Project/chosezhf")

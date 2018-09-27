@@ -20,7 +20,7 @@ class HospitalPresenter @Inject constructor() : IPresenter<IView>() {
         }
         mHandler.postDelayed({
             var hospitalBean = HospitalBean()
-            hospitalBean.data = listOf(
+            hospitalBean.data = arrayListOf(
                     HospitalBean.Hospital("南方医科大学顺德医院", 1224,
                             R.mipmap.pic_hospital1, 0, 1033, "全国百强 \"改善服务创新医院\"", "佛山市顺德区伦敦街道办事处荔村村委会甲子1号"),
                     HospitalBean.Hospital("南方医科大学广州医院", 2570,

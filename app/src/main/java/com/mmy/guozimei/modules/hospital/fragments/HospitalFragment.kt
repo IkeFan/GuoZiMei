@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_hospital.*
  */
 class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
     override fun onLoadMoreRequested() {
-
+        mIPresenter.getTestHospitals(false)
     }
 
     val mAdapter = HospitalAdapter(R.layout.adapter_hospital)
@@ -36,8 +36,12 @@ class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.Req
     override fun requestSuccess(any: IBean) {
         when(any){
             is HospitalBean -> {
-                mAdapter.setNewData(any.data)
-                mAdapter.loadMoreEnd()
+                if(mAdapter.itemCount>1){
+                    mAdapter.addData(any.data!!)
+                    mAdapter.loadMoreComplete()
+                }else{
+                    mAdapter.setNewData(any.data)
+                }
             }
         }
     }
@@ -75,6 +79,6 @@ class HospitalFragment : BaseFragment<HospitalPresenter>(), BaseQuickAdapter.Req
             R.id.v_cure_book->openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/doctor.html")
             R.id.v_medicate_diet -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/medicined.html")
             R.id.v_acupuncture -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/medical.html")
-        }
+         }
     }
 }

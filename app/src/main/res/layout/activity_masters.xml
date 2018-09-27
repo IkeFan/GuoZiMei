@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".modules.home.activities.MastersActivity">
+    <include layout="@layout/frame_toolbar"/>
+    <RelativeLayout
+        android:id="@+id/v_solution_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/bg_tab"
+        >
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            style="@style/BaseWrap"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/title_book"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/v_book_more"
+            style="@style/text_small"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="--- + 更多"
+            android:textColor="@color/line_color" />
+    </RelativeLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/toolbar_tab"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:background="#ffffff"
+        android:fillViewport="false"
+        app:layout_scrollFlags="scroll"
+        app:tabIndicatorColor="@color/main_green"
+        app:tabIndicatorHeight="2.0dp"
+        app:tabSelectedTextColor="#151515"
+        app:tabTextColor="@color/normal_text_color">
+
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="智能排序" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="筛选" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="分类" />
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/master_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

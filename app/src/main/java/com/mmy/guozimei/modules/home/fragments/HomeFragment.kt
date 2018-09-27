@@ -7,6 +7,7 @@ import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseFragment
+import com.mmy.frame.data.bean.BannerBean
 import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
@@ -15,13 +16,11 @@ import com.mmy.guozimei.common.BannerAdapter
 import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
 import com.mmy.guozimei.common.WebViewActivity
+import com.mmy.guozimei.modules.home.activities.MastersActivity
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
 import com.mmy.guozimei.modules.home.presenters.HomePresenter
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
-import java.util.concurrent.TimeUnit
 
 /**
  * @file       HomeFragment.kt
@@ -34,8 +33,7 @@ import java.util.concurrent.TimeUnit
  *             version: zsr, 2017-09-23
  */
 class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadMoreListener, View.OnClickListener {
-    var mLooping =true
-
+    var dragging = false
     override fun onLoadMoreRequested() {
 
     }
@@ -46,6 +44,9 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
     override fun requestSuccess(any: IBean) {
         when(any){
             is HomeBean -> mMastersAdapter.setNewData(any.data)
+            is BannerBean -> {
+                initBanner(any.data!!)
+            }
         }
     }
 
@@ -63,22 +64,23 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         home_master_list.adapter = mMastersAdapter
         home_master_list.layoutManager = LinearLayoutManager(getAc())
         mMastersAdapter.setEnableLoadMore(true)
+    }
 
-        mBannerAdapter = BannerAdapter(R.layout.adapter_banner, getAc())
+    private fun initBanner( data: ArrayList<BannerBean.Banner>){
+        mBannerAdapter = BannerAdapter(getAc(), data,overlap_pager)
         overlap_pager.adapter = mBannerAdapter
         overlap_pager.clipChildren = false
-        overlap_pager.offscreenPageLimit = 4
+        overlap_pager.offscreenPageLimit = 3
 
-        mBannerAdapter?.setData(intArrayOf(R.mipmap.banner_bg, R.mipmap.banner_front,R.mipmap.banner_bg,R.mipmap.banner_front))
-        overlap_pager.setCurrentItem(Integer.MAX_VALUE/2, false)
-        mBannerAdapter?.currPosition = overlap_pager.currentItem
-
+        overlap_pager.currentItem = 20
         CoverFlow.Builder()
                 .with(overlap_pager)
                 .scale(0.15f)
                 .pagerMargin(resources.getDimensionPixelSize(R.dimen.pager_margin).toFloat())
                 .spaceSize(0f)
                 .build()
+
+        startLoop()
     }
 
     override fun initEvent() {
@@ -92,41 +94,37 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mIPresenter.getTestData(true)
+                when(tab?.position){
+                    0->  mIPresenter.getMasters(1,10,true)
+                    1->  mIPresenter.getMasters(1,2,true)
+                    2->  mIPresenter.getMasters(1,1,true)
+                }
             }
 
         })
 
         overlap_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {
-
+                when(state){
+                    ViewPager.SCROLL_STATE_DRAGGING->{
+                        dragging = true
+                    }
+                }
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
+                dragging = true
             }
 
             override fun onPageSelected(position: Int) {
                 mBannerAdapter?.setCurrentPosition(position)
+                mHandler.postDelayed({
+                    dragging = false
+                }, 600)
             }
 
 
         })
-
-
-        Observable.interval(3, 3, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { next ->
-                    if(overlap_pager==null){
-                        return@subscribe
-                    }
-                    var currentIndex = overlap_pager.currentItem
-                    if (++currentIndex == mBannerAdapter?.count) {
-                        overlap_pager.currentItem = 1
-                    } else {
-                        overlap_pager.setCurrentItem(currentIndex, true)
-                    }
-                }
 
         mMastersAdapter.setOnItemClickListener { adapter, view, baseViewHolder, position ->
             openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/introduction.html")
@@ -139,8 +137,29 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                 v_test, v_home_consult, v_master_in, v_activities, v_book, v_knowledge_more, v_book_more).setViewListener(this)
     }
 
+    private fun startLoop(){
+        mHandler.postDelayed(looperRun, 3000)
+    }
+
+    private val looperRun = Runnable {
+        if(overlap_pager==null || dragging ||overlap_pager.isFakeDragging){
+            dragging = false
+            startLoop()
+            return@Runnable
+        }
+        var currentIndex = overlap_pager.currentItem
+        if (++currentIndex == mBannerAdapter?.count) {
+            overlap_pager.currentItem = 1
+        } else {
+            overlap_pager.setCurrentItem(currentIndex, true)
+        }
+        startLoop()
+    }
+
     override fun initData() {
-        mIPresenter.getTestData(false)
+//        mIPresenter.getTestData(false)
+        mIPresenter.getMasters(1,10,false)
+        mIPresenter.getBanner()
     }
 
     override fun onClick(v: View?) {
@@ -150,7 +169,10 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             }
             R.id.v_solution -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/program.html")
             R.id.v_knowledge -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/health.html")
-            R.id.v_book -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/physician.html")
+            R.id.v_book ->  {
+//                openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/physician.html")
+                openActivity(MastersActivity::class.java)
+            }
             R.id.v_class -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/course.html")
             R.id.v_activities -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/activity.html")
             R.id.v_test -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/testing.html")

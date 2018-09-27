@@ -2,12 +2,16 @@ package com.mmy.guozimei.common
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.mmy.frame.data.bean.BannerBean
+import com.mmy.frame.utils.Config
 import com.mmy.guozimei.R
-import org.jetbrains.annotations.NotNull
+
 
 /**
  * @file       BannerAdapter.kt
@@ -19,16 +23,11 @@ import org.jetbrains.annotations.NotNull
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class BannerAdapter(@NotNull val resLayout:Int, var mContext:Context) :PagerAdapter(){
-    var mData:IntArray? = null
-    var currPosition:Int =1
+class BannerAdapter(private var mContext: Context, private var mData: ArrayList<BannerBean.Banner>, var pagerView:ViewPager) : PagerAdapter() {
+    var currPosition: Int = 1
+    var mCacheViews = ArrayList<View>()
     override fun getCount(): Int {
-      return Int.MAX_VALUE
-    }
-
-    fun setData(data:IntArray){
-        mData = data
-        notifyDataSetChanged()
+        return Int.MAX_VALUE/2
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -37,27 +36,42 @@ class BannerAdapter(@NotNull val resLayout:Int, var mContext:Context) :PagerAdap
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
+        pagerView.removeView(`object`)
+        mCacheViews.add(`object`)
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        var view =   LayoutInflater.from(mContext).inflate(resLayout,container,false)
-        var imageView = view.findViewById<ImageView>(R.id.image_cover) as ImageView
-        imageView.setImageDrawable(mContext.resources.getDrawable(mData!![position%(mData!!.size)]))
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        var view:View
+        if (mCacheViews.isEmpty()) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.adapter_banner, null, false)
+            var imageView = view.findViewById<ImageView>(R.id.image_cover) as ImageView
+            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        }else{
+            view =  mCacheViews.removeAt(0)
+        }
+//        if (view?.parent != null) {
+//            var parent = view?.parent as ViewGroup
+//            parent.removeView(view)
+//        }
+
+        Glide.with(mContext)
+                .load(Config.HOST + mData[position % mData.size].content)
+                .error(R.mipmap.banner_bg)
+                .placeholder(R.mipmap.banner_bg)
+                .into(view.findViewById(R.id.image_cover))
         container.addView(view)
 //        view.alpha = 0.5f
-        view.alpha = if( currPosition == position){
-            1.0f
-        }else{
-            0.5f
-        }
-        view.invalidate()
-//        Log.e("BannerAdapter", "BannerAdapter position:$position, current:$currPosition")
-        return view
+//        view?.alpha = if (currPosition == position) {
+//            1.0f
+//        } else {
+//            0.5f
+//        }
+        return view!!
     }
 
-    fun setCurrentPosition(position:Int){
+    fun setCurrentPosition(position: Int) {
         currPosition = position
         notifyDataSetChanged()
     }
+
 }

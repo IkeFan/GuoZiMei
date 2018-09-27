@@ -49,6 +49,7 @@
     <string name="master_high">高级大师</string>
     <string name="painting_master">国画大师</string>
     <string name="written_master">书法大师</string>
+    <string name="master_appointment">大师预约</string>
     <string name="noun_master">古琴大师</string>
 
     <string name="complex_sort">综合排序</string>

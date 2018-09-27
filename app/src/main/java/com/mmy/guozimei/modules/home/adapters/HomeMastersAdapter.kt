@@ -1,8 +1,10 @@
 package com.mmy.guozimei.modules.home.adapters
 
+import com.bumptech.glide.Glide
 import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.adapter.BaseViewHolder
 import com.mmy.frame.data.bean.HomeBean
+import com.mmy.frame.utils.Config
 import com.mmy.guozimei.R
 
 /**
@@ -11,7 +13,7 @@ import com.mmy.guozimei.R
 class HomeMastersAdapter(resId:Int) :BaseQuickAdapter<HomeBean.GreatMaster, BaseViewHolder>(resId) {
     override fun convert(helper: BaseViewHolder?, item: HomeBean.GreatMaster?) {
         helper?.setText(R.id.item_name, item?.name)
-        helper?.setText(R.id.item_achievements, item?.achievements)
+        helper?.setText(R.id.item_achievements, item?.description)
         helper?.setText(R.id.item_level, when(item?.level){
             1 -> mContext.getString(R.string.master_primary)
             2 -> mContext.getString(R.string.master_middle)
@@ -24,7 +26,13 @@ class HomeMastersAdapter(resId:Int) :BaseQuickAdapter<HomeBean.GreatMaster, Base
             3 -> mContext.getString(R.string.noun_master)
             else -> mContext.getString(R.string.painting_master)
         })
+        helper?.setText(R.id.item_honor, item?.honor)
         helper?.setText(R.id.item_age, item?.age.toString())
-        helper?.setImageDrawable(R.id.item_portrait, mContext.resources.getDrawable(item?.portrait!!))
+        Glide.with(mContext)
+                .load(Config.HOST + item?.logo)
+                .error(R.mipmap.banner_bg)
+                .placeholder(R.mipmap.banner_bg)
+                .into(helper?.getView(R.id.item_portrait))
+//        helper?.setImageDrawable(R.id.item_portrait, mContext.resources.getDrawable(item?.portrait!!))
     }
 }
