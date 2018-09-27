@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.mmy.frame.data.api.ApiService
 import com.mmy.frame.data.api.module.ApiServiceModule
 import com.mmy.frame.data.bean.UserInfo
+import com.mmy.frame.helper.PayHelper
 import com.squareup.otto.Bus
 import okhttp3.Cache
 import javax.inject.Inject
@@ -22,6 +23,7 @@ abstract class FrameApp : Application() {
     @Inject lateinit var handler: Handler
     @Inject lateinit var mFrameApp: FrameApp
     @Inject lateinit var cache: Cache
+    @Inject lateinit var payHelper: PayHelper
     @Inject lateinit var mBus: Bus
     @Inject lateinit var mApi: ApiService
     @Inject lateinit var mGson: Gson
@@ -43,6 +45,7 @@ abstract class FrameApp : Application() {
         frameInstance = this
         Utils.init(this)
         appComponent.inject(this)
+        appComponent.getPayHelper().init(this)
         initApp()
     }
 

@@ -4,6 +4,7 @@ import android.os.Handler
 import com.google.gson.Gson
 import com.mmy.frame.data.api.ApiService
 import com.mmy.frame.data.api.module.ApiServiceModule
+import com.mmy.frame.helper.PayHelper
 import com.squareup.otto.Bus
 import dagger.Component
 import javax.inject.Singleton
@@ -25,5 +26,6 @@ interface AppComponent {
     fun getApiService(): ApiService
     fun getGson():Gson
     fun getBus():Bus
+    fun getPayHelper():PayHelper
     fun inject(frameApp: FrameApp)
 }

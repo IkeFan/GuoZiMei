@@ -2,6 +2,7 @@ package com.mmy.frame
 
 import android.os.Handler
 import com.google.gson.Gson
+import com.mmy.frame.helper.PayHelper
 import com.squareup.otto.Bus
 import dagger.Module
 import dagger.Provides
@@ -30,4 +31,8 @@ class AppModule(private val frameApp: FrameApp) {
     @Provides
     @Singleton
     fun provideBus() = Bus()
+
+    @Provides
+    @Singleton
+    fun providePayHelper() = PayHelper()
 }

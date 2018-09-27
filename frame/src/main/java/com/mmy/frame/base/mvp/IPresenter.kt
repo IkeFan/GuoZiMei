@@ -5,6 +5,7 @@ import android.os.Handler
 import com.mmy.frame.FrameApp
 import com.mmy.frame.data.api.ApiService
 import com.mmy.frame.helper.CommentHelper
+import com.mmy.frame.helper.PayHelper
 import javax.inject.Inject
 
 
@@ -22,6 +23,7 @@ open class IPresenter<V : IView> : CommentHelper {
     @Inject lateinit var mApp: FrameApp
     @Inject lateinit var mHandler:Handler
     @Inject lateinit var mApi:ApiService
+    @Inject lateinit var mPayHelper:PayHelper
 
     fun finishActivity(){
         (mV as Activity).finish()

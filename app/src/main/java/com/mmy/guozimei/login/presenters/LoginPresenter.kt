@@ -32,6 +32,7 @@ class LoginPresenter @Inject constructor() : IPresenter<IView>() {
                 }
             }
             _fail = {
+                mHandler
                 mV.hidLoading()
                 it.message?.showToast(mFrameApp)
             }

@@ -77,6 +77,9 @@ dependencies {
     //多选相册
     implementation 'com.yanzhenjie:album:1.0.0'
     implementation "com.android.support:design:$supportVersion"
+
+    implementation files('libs/alipaySdk-20170922.jar')
+    implementation files('libs/libammsdk.jar')
 }
 repositories {
     mavenCentral()

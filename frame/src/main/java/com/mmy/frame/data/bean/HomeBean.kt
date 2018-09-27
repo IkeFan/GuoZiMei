@@ -7,12 +7,11 @@ class HomeBean: IBean() {
     var data:List<GreatMaster>? = null
     class GreatMaster(
         var name:String? = null,
-        var level:Int? = 0,
+        var title:String? = null,
         var honor:String? = null,
-        var achievements:String ? = null,
         var male:Int? = 1,
         var age:Int? = 0,
-        var type:Int? = 1,
+        var type:String? = null,
         var logo:String? =null,
         var description:String? = null
     )

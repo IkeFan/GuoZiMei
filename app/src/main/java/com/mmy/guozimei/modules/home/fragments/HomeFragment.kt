@@ -70,6 +70,7 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         mBannerAdapter = BannerAdapter(getAc(), data,overlap_pager)
         overlap_pager.adapter = mBannerAdapter
         overlap_pager.clipChildren = false
+
         overlap_pager.offscreenPageLimit = 3
 
         overlap_pager.currentItem = 20

@@ -14,24 +14,19 @@ class HomeMastersAdapter(resId:Int) :BaseQuickAdapter<HomeBean.GreatMaster, Base
     override fun convert(helper: BaseViewHolder?, item: HomeBean.GreatMaster?) {
         helper?.setText(R.id.item_name, item?.name)
         helper?.setText(R.id.item_achievements, item?.description)
-        helper?.setText(R.id.item_level, when(item?.level){
-            1 -> mContext.getString(R.string.master_primary)
-            2 -> mContext.getString(R.string.master_middle)
-            3 -> mContext.getString(R.string.master_high)
-            else -> mContext.getString(R.string.master_primary)
-        })
-        helper?.setText(R.id.item_type, when(item?.type){
-            1 -> mContext.getString(R.string.painting_master)
-            2 -> mContext.getString(R.string.written_master)
-            3 -> mContext.getString(R.string.noun_master)
-            else -> mContext.getString(R.string.painting_master)
-        })
+        helper?.setText(R.id.item_level,item?.title)
+        helper?.setText(R.id.item_type, item?.type)
         helper?.setText(R.id.item_honor, item?.honor)
         helper?.setText(R.id.item_age, item?.age.toString())
+        helper?.setImageResource(R.id.item_male_iv, when(item?.male){
+            1-> R.mipmap.ic_male
+            2-> R.mipmap.female
+            else -> 0
+        })
         Glide.with(mContext)
                 .load(Config.HOST + item?.logo)
-                .error(R.mipmap.banner_bg)
-                .placeholder(R.mipmap.banner_bg)
+                .error(R.mipmap.ic_default_portrait)
+                .placeholder(R.mipmap.ic_default_portrait)
                 .into(helper?.getView(R.id.item_portrait))
 //        helper?.setImageDrawable(R.id.item_portrait, mContext.resources.getDrawable(item?.portrait!!))
     }
