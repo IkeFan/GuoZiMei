@@ -5,7 +5,7 @@ import com.mmy.frame.FrameApp
 import java.util.*
 
 /**
- * @file       UserInfo.kt
+ * @file       AccountInfo.kt.kt
  * @brief      描述
  * @author     lucas
  * @date       2018/5/16 0016
@@ -14,8 +14,8 @@ import java.util.*
  * @par History:
  *             version: zsr, 2017-09-23
  */
-class UserInfo {
-    var id: Int? = null
+class AccountInfo {
+    var member_id: Int? = null
         get() = if (field == null) 0 else field
     var token: String? = null
     var name: String? = null
@@ -27,15 +27,13 @@ class UserInfo {
 
     var userBean:PersonalInfoBean.DataBean?=null
 
-    //融云token
-    var rongToken: String? = null
 
     fun getIdCheckLogin(): Int {
-        if (id == 0 || id == null) {
+        if (member_id == 0 || member_id == null) {
             FrameApp.frameInstance.mBus.post(UserEvent("login"))
             return 0
         } else
-            return id!!
+            return member_id!!
     }
 
 
@@ -47,7 +45,7 @@ class UserInfo {
             return int
         }
 
-    fun isLogin() = id != null
+    fun isLogin() = member_id != null
 
     companion object {
 

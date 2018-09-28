@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.Utils
 import com.google.gson.Gson
 import com.mmy.frame.data.api.ApiService
 import com.mmy.frame.data.api.module.ApiServiceModule
-import com.mmy.frame.data.bean.UserInfo
+import com.mmy.frame.data.bean.AccountInfo
 import com.mmy.frame.helper.PayHelper
 import com.squareup.otto.Bus
 import okhttp3.Cache
@@ -34,7 +34,7 @@ abstract class FrameApp : Application() {
             .apiServiceModule(ApiServiceModule())
             .build()
 
-    var userInfo: UserInfo = UserInfo()
+    var mAccountInfo: AccountInfo = AccountInfo()
 
     companion object {
        lateinit var frameInstance: FrameApp

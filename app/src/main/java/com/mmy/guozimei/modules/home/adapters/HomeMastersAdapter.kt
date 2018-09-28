@@ -28,6 +28,9 @@ class HomeMastersAdapter(resId:Int) :BaseQuickAdapter<HomeBean.GreatMaster, Base
                 .error(R.mipmap.ic_default_portrait)
                 .placeholder(R.mipmap.ic_default_portrait)
                 .into(helper?.getView(R.id.item_portrait))
+
+        helper?.addOnClickListener(R.id.item_book_now)
+        helper?.addOnClickListener(R.id.item_learn)
 //        helper?.setImageDrawable(R.id.item_portrait, mContext.resources.getDrawable(item?.portrait!!))
     }
 }

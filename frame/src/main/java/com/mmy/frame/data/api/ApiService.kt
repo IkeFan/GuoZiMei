@@ -37,7 +37,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("Unit/register")
     fun register(@Field("card") card: String, @Field("code")code:String,
-                 @Field("password") password: String, @Field("invite")invite:String?=null): Observable<RegisterBean>
+                 @Field("password") password: String, @Field("invite")invite:String?=null): Observable<LoginBean>
 
     //发送验证码
     @Headers("needUserId:false")
@@ -56,6 +56,13 @@ interface ApiService {
     @FormUrlEncoded
     @POST("Unit/login")
     fun login(@Field("card") card: String, @Field("password") pwd: String): Observable<LoginBean>
+
+    @Headers("needUserId:false")
+    @FormUrlEncoded
+    @POST("Unit/forget")
+    fun forgetPassword(@Field("card") card: String, @Field("code")code:String,
+                 @Field("password") password: String): Observable<LoginBean>
+
 
     //获取token openid
     @Headers("needUserId:false")

@@ -38,16 +38,35 @@ class RegisterPresenter @Inject constructor() : IPresenter<IView>() {
         }
     }
 
+    fun forgetPassword(card: String, code: String, password: String){
+        mV.showLoading()
+        mM.request {
+            call = mApi.forgetPassword(card, code, password)
+            _success = {
+                mV.hidLoading()
+                if (it is IBean) {
+                    it.msg?.showToast(mFrameApp)
+                    if (it.code == 1) {
+                        mV.requestSuccess(it)
+                    }
+                } else {
+                    "请求失败".showToast(mFrameApp)
+                }
+            }
+            _fail = {
+                mV.hidLoading()
+                it.message?.showToast(mFrameApp)
+            }
+        }
+    }
+
     fun getVerifyCode(card: String) {
         mM.request {
             call = mApi.sendCode(card)
             _success = {
                 if (it is IBean) {
-                    if (it.code == 1) {
-                        mV.requestSuccess(it)
-                    } else {
-                        it.msg.showToast(mFrameApp)
-                    }
+                    it.msg.showToast(mFrameApp)
+                    mV.requestSuccess(it)
                 } else {
                     "请求失败".showToast(mFrameApp)
                 }

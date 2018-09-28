@@ -5,6 +5,7 @@ import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.data.bean.LoginBean
 import com.mmy.guozimei.MainActivity
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerActivityComponent
@@ -14,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity<LoginPresenter>(), View.OnClickListener{
     override fun requestSuccess(any: IBean) {
+        if(any is LoginBean){
+            mFrameApp?.mAccountInfo = any.data
+        }
         var intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
@@ -35,7 +39,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), View.OnClickListener{
     }
 
     override fun initEvent() {
-        arrayOf(tv_register, tv_login).setViewListener(this)
+        arrayOf(tv_register, tv_login, tv_forget).setViewListener(this)
     }
 
     override fun getLayoutID(): Any = R.layout.activity_login
@@ -52,6 +56,7 @@ class LoginActivity : BaseActivity<LoginPresenter>(), View.OnClickListener{
                 }
                 mIPresenter.login(login_account_input.text.trim().toString(), login_pwd_input.text.trim().toString())
             }
+            R.id.tv_forget -> openActivity(RegisterActivity::class.java,"title=" + getString(R.string.forget_password)+",card = " + login_account_input.text)
         }
     }
 }

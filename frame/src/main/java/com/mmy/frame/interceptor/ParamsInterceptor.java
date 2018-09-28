@@ -100,11 +100,11 @@ public class ParamsInterceptor implements Interceptor {
     }
 
     private int getUserId() {
-        return mFrameApp.getUserInfo().getId();
+        return mFrameApp.getMAccountInfo().getMember_id();
     }
 
     private String getSign() {
-        return mFrameApp.getUserInfo().getToken();
+        return mFrameApp.getMAccountInfo().getToken();
     }
 
 }

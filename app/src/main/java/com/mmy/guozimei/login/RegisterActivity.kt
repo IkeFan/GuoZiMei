@@ -5,6 +5,7 @@ import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.data.bean.LoginBean
 import com.mmy.guozimei.MainActivity
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerActivityComponent
@@ -13,24 +14,37 @@ import com.mmy.guozimei.helper.CountDownTask
 import com.mmy.guozimei.login.presenters.RegisterPresenter
 import kotlinx.android.synthetic.main.activity_register.*
 
-class RegisterActivity :BaseActivity<RegisterPresenter>(), View.OnClickListener, CountDownTask.OnCountDownTaskListener {
+class RegisterActivity : BaseActivity<RegisterPresenter>(), View.OnClickListener, CountDownTask.OnCountDownTaskListener {
 
-     var  counter: CountDownTask?=null
+    var isForget = false
+    var counter: CountDownTask? = null
 
 
     override fun progress(progress: Int) {
-        get_code.text =progress.toString() + "秒"
+        get_code.text = progress.toString() + "秒"
     }
 
     override fun complete() {
-        get_code.isEnabled=true
+        get_code.isEnabled = true
         get_code.isClickable = true
         get_code.setText(R.string.get_verify_code)
     }
+
     override fun requestSuccess(any: IBean) {
-        var intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        when (any) {
+            is LoginBean -> {
+                mFrameApp?.mAccountInfo = any.data
+                var intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
+            is IBean -> {
+                if(any.code!=1){
+                    counter?.stop()
+                    complete()
+                }
+            }
+        }
     }
 
     override fun setupDagger(appComponent: AppComponent) {
@@ -41,14 +55,23 @@ class RegisterActivity :BaseActivity<RegisterPresenter>(), View.OnClickListener,
     }
 
     override fun initView() {
-        setToolbar(getString(R.string.register),true)
+        if (intent.hasExtra("title")) {
+            setToolbar(intent.getStringExtra("title"), true)
+            finish_register.setText(R.string.finish)
+            invite_input.visibility = View.GONE
+            isForget = true
+        } else {
+            isForget = false
+            setToolbar(getString(R.string.register), true)
+        }
+
     }
 
     override fun initData() {
-        if(intent.hasExtra("card")){
+        if (intent.hasExtra("card")) {
             account_input.setText(intent.getStringExtra("card"))
         }
-        counter =  CountDownTask(mFrameApp?.handler!!, this)
+        counter = CountDownTask(mFrameApp?.handler!!, this)
     }
 
     override fun getLayoutID(): Any = R.layout.activity_register
@@ -58,31 +81,37 @@ class RegisterActivity :BaseActivity<RegisterPresenter>(), View.OnClickListener,
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.finish_register->{
+        when (v?.id) {
+            R.id.finish_register -> {
                 arrayOf(password_input, code_input, account_input).forEach {
-                    if(it.text.trim().isEmpty()){
-                        (it.hint.toString()+"不能为空").showToast(mFrameApp)
+                    if (it.text.trim().isEmpty()) {
+                        (it.hint.toString() + "不能为空").showToast(mFrameApp)
                         return
                     }
                 }
-                if(invite_input.text==null||invite_input.text.trim().isEmpty()){
-                    mIPresenter.register(account_input.text.trim().toString(),code_input.text.trim().toString(),
-                            password_input.text.trim().toString())
-                }else{
+                if (invite_input.text == null || invite_input.text.trim().isEmpty()) {
+                    if (isForget) {
+                        mIPresenter.forgetPassword(account_input.text.trim().toString(), code_input.text.trim().toString(),
+                                password_input.text.trim().toString())
+                    } else {
+                        mIPresenter.register(account_input.text.trim().toString(), code_input.text.trim().toString(),
+                                password_input.text.trim().toString())
+                    }
+
+                } else {
                     mIPresenter.register(account_input.text.trim().toString(),
-                            code_input.text.trim().toString(),password_input.text.trim().toString(), invite_input.text.trim().toString())
+                            code_input.text.trim().toString(), password_input.text.trim().toString(), invite_input.text.trim().toString())
                 }
 
             }
-            R.id.get_code ->{
-                if(account_input.text.trim().isEmpty()){
+            R.id.get_code -> {
+                if (account_input.text.trim().isEmpty()) {
                     ("请输入" + account_input.hint.toString()).showToast(mFrameApp)
                     return
                 }
                 counter?.start()
-                get_code.isEnabled=false
-                get_code.isClickable=false
+                get_code.isEnabled = false
+                get_code.isClickable = false
                 mIPresenter.getVerifyCode(account_input.text.trim().toString())
             }
         }

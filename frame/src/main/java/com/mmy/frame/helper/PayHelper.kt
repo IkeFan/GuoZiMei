@@ -23,10 +23,12 @@ import javax.inject.Inject
  */
 
 class PayHelper @Inject constructor(){
-    val WEIXIN = 0
-    val ALY = 1
-    val BANK_CAR = 2
-    val BALANCE = 3
+    companion object {
+        val WEIXIN = 0
+        val ALY = 1
+        val BANK_CAR = 2
+        val BALANCE = 3
+    }
     private var msgApi: com.tencent.mm.opensdk.openapi.IWXAPI? = null
     var order_sn:String? = null
 

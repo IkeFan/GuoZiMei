@@ -5,12 +5,15 @@ import android.view.MenuItem
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseActivity
+import com.mmy.frame.data.bean.AccountInfo
 import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.helper.BottomNavigationViewHelper
+import com.mmy.guozimei.login.LoginActivity
 import com.mmy.guozimei.modules.home.fragments.HomeFragment
 import com.mmy.guozimei.modules.hospital.fragments.HospitalFragment
 import com.mmy.guozimei.modules.mine.fragments.MineFragment
 import com.mmy.guozimei.modules.store.fragments.StoreFragment
+import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<IPresenter<*>>(){
@@ -52,7 +55,9 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
                         return@onNavigationItemSelected true
                     }
                     R.id.navigation_mine -> {
-                        showFragmentByPosition(3)
+                        var id =   mFrameApp?.mAccountInfo?.getIdCheckLogin()
+                        if(id!=0)
+                            showFragmentByPosition(3)
                         return@onNavigationItemSelected true
                     }
                     else -> return@onNavigationItemSelected false
@@ -86,4 +91,10 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
         transaction.commit()
     }
 
+    override fun registerBus(): Boolean = true
+
+    @Subscribe
+    fun onLoginRequest(accountEvent: AccountInfo.UserEvent){
+        openActivity(LoginActivity::class.java)
+    }
 }

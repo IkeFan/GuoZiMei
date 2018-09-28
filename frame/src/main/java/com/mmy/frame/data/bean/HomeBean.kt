@@ -5,7 +5,8 @@ package com.mmy.frame.data.bean
  */
 class HomeBean: IBean() {
     var data:List<GreatMaster>? = null
-    class GreatMaster(
+
+    class GreatMaster(var id:Int? = 0,
         var name:String? = null,
         var title:String? = null,
         var honor:String? = null,

@@ -3,6 +3,7 @@ package com.mmy.guozimei.modules.home.activities
 import android.support.design.widget.TabLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.mmy.frame.AppComponent
+import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
@@ -59,6 +60,10 @@ class MastersActivity : BaseActivity<HomePresenter>() {
             }
 
         })
+
+        mMastersAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+          var id =   mFrameApp?.mAccountInfo?.getIdCheckLogin()
+        }
     }
 
     override fun getLayoutID(): Any  = R.layout.activity_masters
