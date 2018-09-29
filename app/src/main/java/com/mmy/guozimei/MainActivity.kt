@@ -1,12 +1,16 @@
 package com.mmy.guozimei
 
+import android.Manifest
 import android.support.design.widget.BottomNavigationView
+import android.util.Log
 import android.view.MenuItem
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.AccountInfo
+import com.mmy.frame.data.bean.EventBean
 import com.mmy.frame.data.bean.IBean
+import com.mmy.guozimei.city.DBHelper
 import com.mmy.guozimei.helper.BottomNavigationViewHelper
 import com.mmy.guozimei.login.LoginActivity
 import com.mmy.guozimei.modules.home.fragments.HomeFragment
@@ -14,7 +18,9 @@ import com.mmy.guozimei.modules.hospital.fragments.HospitalFragment
 import com.mmy.guozimei.modules.mine.fragments.MineFragment
 import com.mmy.guozimei.modules.store.fragments.StoreFragment
 import com.squareup.otto.Subscribe
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : BaseActivity<IPresenter<*>>(){
     val mFragmentTags = arrayOf("home", "store", "hospital", "mine")
@@ -35,7 +41,22 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
     }
 
     override fun initData() {
-
+        var rxPermissions = RxPermissions(this)
+        rxPermissions.requestEach(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.INTERNET, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe { permission ->
+                    when {
+                        permission.granted -> {
+                            // 用户已经同意该权限
+                            DBHelper(this).createDataBase()
+                        }
+                        permission.shouldShowRequestPermissionRationale -> Log.d("ScanPicCameraActivity", permission.name + " is denied. More info should be provided.")
+                        else -> {// 用户拒绝了该权限，并且选中『不再询问』
+                            "权限不足，请到设置中心开启必要权限".showToast(mFrameApp)
+                        }
+                    }
+                }
     }
 
     override fun initEvent() {
@@ -96,5 +117,9 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
     @Subscribe
     fun onLoginRequest(accountEvent: AccountInfo.UserEvent){
         openActivity(LoginActivity::class.java)
+    }
+    @Subscribe
+    fun onCityGet(eventBean: EventBean){
+        v_location.text = eventBean.meg
     }
 }

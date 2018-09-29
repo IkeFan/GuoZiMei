@@ -12,6 +12,7 @@ import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
 import com.mmy.guozimei.ScanPicCameraActivity
+import com.mmy.guozimei.city.CitySearchActivity
 import com.mmy.guozimei.common.BannerAdapter
 import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
@@ -168,6 +169,7 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             R.id.v_scan -> {
                 openActivity(ScanPicCameraActivity::class.java)
             }
+            R.id.v_location -> openActivity(CitySearchActivity::class.java)
             R.id.v_solution -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/program.html")
             R.id.v_knowledge -> openActivity(WebViewActivity::class.java,"url="+"http://1.soowww.com/health.html")
             R.id.v_book ->  {

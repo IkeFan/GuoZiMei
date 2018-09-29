@@ -37,7 +37,7 @@ class LetterListView(context: Context?, attrs: AttributeSet?) : View(context, at
         val singleHeight = height / b.size
         for (i in b.indices) {
             paint.color = Color.parseColor("#8c8c8c")
-            paint.textSize = 12f
+            paint.textSize = 18f
             // paint.setTypeface(Typeface.DEFAULT_BOLD);
             paint.isAntiAlias = true
             /*if (i == choose) {

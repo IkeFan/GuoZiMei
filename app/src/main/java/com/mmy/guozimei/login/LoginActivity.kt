@@ -1,12 +1,10 @@
 package com.mmy.guozimei.login
 
-import android.content.Intent
 import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.IBean
 import com.mmy.frame.data.bean.LoginBean
-import com.mmy.guozimei.MainActivity
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerActivityComponent
 import com.mmy.guozimei.common.IViewModule
@@ -18,9 +16,10 @@ class LoginActivity : BaseActivity<LoginPresenter>(), View.OnClickListener{
         if(any is LoginBean){
             mFrameApp?.mAccountInfo = any.data
         }
-        var intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+//        var intent = Intent(this, MainActivity::class.java)
+//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//        startActivity(intent)
+        finish()
     }
 
     override fun setupDagger(appComponent: AppComponent) {

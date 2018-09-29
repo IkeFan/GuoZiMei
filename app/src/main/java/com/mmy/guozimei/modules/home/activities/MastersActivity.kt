@@ -10,6 +10,7 @@ import com.mmy.frame.data.bean.IBean
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerActivityComponent
 import com.mmy.guozimei.common.IViewModule
+import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
 import com.mmy.guozimei.modules.home.presenters.HomePresenter
 import kotlinx.android.synthetic.main.activity_masters.*
@@ -62,7 +63,10 @@ class MastersActivity : BaseActivity<HomePresenter>() {
         })
 
         mMastersAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
-          var id =   mFrameApp?.mAccountInfo?.getIdCheckLogin()
+            var id =   mFrameApp?.mAccountInfo?.getIdCheckLogin()
+            if(id!=0){
+                openActivity(WebViewActivity::class.java, "url = http://1.soowww.com/reserve.html#")
+            }
         }
     }
 

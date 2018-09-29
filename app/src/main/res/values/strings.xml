@@ -19,6 +19,7 @@
     <string name="phone_or_email">手机或者邮箱</string>
 
     <string name="location">位置</string>
+    <string name="change_city">切换城市</string>
     <string name="search_hot_info">搜索热门健康咨询</string>
     <string name="key_search">请输入关键词</string>
     <string name="search_you_want">搜索您需要的内容</string>
