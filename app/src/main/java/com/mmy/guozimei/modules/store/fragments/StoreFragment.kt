@@ -1,10 +1,8 @@
 package com.mmy.guozimei.modules.store.fragments
 
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
-import com.mmy.frame.adapter.BaseViewHolder
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.IBean
 import com.mmy.frame.data.bean.StoreBean
@@ -27,9 +25,9 @@ import kotlinx.android.synthetic.main.fragment_store.*
  *             version: zsr, 2017-09-23
  */
 class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLoadMoreListener{
+    var curPage = 0
     override fun onLoadMoreRequested() {
-//        mIPresenter.getTestProduct(1, true)
-//        mAdapter.setEnableLoadMore(false)
+        mIPresenter.getProduct(0,curPage++,showLoading = true)
     }
 
     val mAdapter = StoreProductAdapter(R.layout.adapter_product)
@@ -37,14 +35,16 @@ class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLo
     override fun requestSuccess(any: IBean) {
        when(any){
            is StoreBean -> {
-               mAdapter.setNewData(any.data)
-//               if(mAdapter.data.isEmpty()) {
-//                   mAdapter.setNewData(any.data)
-//               }
-//               else if(any.data!=null){
-//                   mAdapter.addData(any.data!!)
-//                   mAdapter.loadMoreComplete()
-//               }
+               if(any.data == null || any.data!!.isEmpty()){
+                   mAdapter.loadMoreEnd()
+               }
+               else if(mAdapter.data.size>0) {
+                   mAdapter.setNewData(any.data)
+               }
+               else{
+                   mAdapter.addData(any.data!!)
+                   mAdapter.loadMoreComplete()
+               }
            }
            else ->{
 
@@ -69,32 +69,30 @@ class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLo
     }
 
     override fun initData() {
-        mIPresenter.getTestProduct(0, false)
+//        mIPresenter.getTestProduct(0, false)
+        mIPresenter.getProduct(0,curPage++,showLoading = false)
     }
 
     override fun initEvent() {
         radio_group1.setOnCheckedChangeListener({_,id->
+            curPage = 0
             when(id){
-                R.id.store_all_cb ->{ mIPresenter.getTestProduct(0, true)}
-                R.id.store_wudangshan_cb -> { mIPresenter.getTestProduct(0, true)}
-                R.id.store_sichuan_cb -> { mIPresenter.getTestProduct(0, true)}
-                R.id.store_other_cb -> { mIPresenter.getTestProduct(0, true)}
+                R.id.store_all_cb ->{ mIPresenter.getProduct(0, curPage++, showLoading = true)}
+                R.id.store_wudangshan_cb -> { mIPresenter.getProduct(0, curPage++, showLoading = true)}
+                R.id.store_sichuan_cb -> { mIPresenter.getProduct(0, curPage++, showLoading = true)}
+                R.id.store_other_cb -> {mIPresenter.getProduct(0, curPage++, showLoading = true)}
             }
         })
 
         radio_group2.setOnCheckedChangeListener({ _,id ->
+            curPage = 0
             when(id){
-                R.id.store_compex_cb -> { mIPresenter.getTestProduct(0, true)}
-                R.id.store_sale_cb-> { mIPresenter.getTestProduct(0, true) }
-                R.id.store_screen -> { mIPresenter.getTestProduct(0, true) }
+                R.id.store_compex_cb -> { mIPresenter.getProduct(0, curPage++, showLoading = true)}
+                R.id.store_sale_cb-> { mIPresenter.getProduct(0, curPage++, showLoading = true) }
+                R.id.store_screen -> { mIPresenter.getProduct(0, curPage++, showLoading = true) }
             }
         })
 
-        mAdapter.onItemClickListener = object :BaseQuickAdapter.OnItemClickListener{
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, baseViewHolder: BaseViewHolder?, position: Int) {
-                openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/details.html")
-            }
-
-        }
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, baseViewHolder, position -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/details.html") }
     }
 }

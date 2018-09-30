@@ -7,6 +7,7 @@ import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.utils.Config
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.DaggerActivityComponent
 import com.mmy.guozimei.common.IViewModule
@@ -65,7 +66,8 @@ class MastersActivity : BaseActivity<HomePresenter>() {
         mMastersAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             var id =   mFrameApp?.mAccountInfo?.getIdCheckLogin()
             if(id!=0){
-                openActivity(WebViewActivity::class.java, "url = http://1.soowww.com/reserve.html#")
+                var masterId = mMastersAdapter.getItem(position)?.id
+                openActivity(WebViewActivity::class.java, "url=" + Config.HOST+"/mobile/great/reserve.html?id>$masterId")
             }
         }
     }

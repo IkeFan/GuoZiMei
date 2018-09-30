@@ -1,6 +1,7 @@
 package com.mmy.guozimei.login
 
 import android.view.View
+import com.blankj.utilcode.util.SPUtils
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.IBean
@@ -32,9 +33,12 @@ class RegisterActivity : BaseActivity<RegisterPresenter>(), View.OnClickListener
         when (any) {
             is LoginBean -> {
                 mFrameApp?.mAccountInfo = any.data
+                mBus.post(any.data)
 //                var intent = Intent(this, MainActivity::class.java)
 //                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
 //                startActivity(intent)
+                SPUtils.getInstance().put("phone",account_input.text.trim().toString())
+                SPUtils.getInstance().put("pwd",password_input.text.trim().toString())
                 finish()
             }
             is IBean -> {

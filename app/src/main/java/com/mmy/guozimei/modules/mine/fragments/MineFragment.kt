@@ -1,12 +1,17 @@
 package com.mmy.guozimei.modules.mine.fragments
 
 import android.view.View
+import com.bumptech.glide.Glide
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseFragment
+import com.mmy.frame.data.bean.AccountInfo
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.utils.Config
 import com.mmy.guozimei.R
 import com.mmy.guozimei.common.WebViewActivity
+import com.squareup.otto.Subscribe
+import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
@@ -35,7 +40,9 @@ class MineFragment : BaseFragment<IPresenter<*>>(), View.OnClickListener {
     }
 
     override fun initData() {
-
+        if(mFramApp.mAccountInfo.isLogin()){
+            userInfoGet(mFramApp.mAccountInfo)
+        }
     }
 
     override fun initEvent() {
@@ -57,4 +64,16 @@ class MineFragment : BaseFragment<IPresenter<*>>(), View.OnClickListener {
             R.id.mine_book_buy -> openActivity(WebViewActivity::class.java, "url="+"http://3.soowww.com/index.html#/myClasses")
         }
     }
+
+    @Subscribe
+    fun userInfoGet(info: AccountInfo){
+        v_name.text = info.nickname
+        Glide.with(getAc())
+                .load(Config.HOST+info.head_pic)
+                .bitmapTransform(CropCircleTransformation(getAc()))
+                .placeholder(R.mipmap.ic_default_portrait)
+                .error(R.mipmap.ic_default_portrait)
+                .into(v_portrait)
+    }
+    override fun registerBus(): Boolean  = true
 }

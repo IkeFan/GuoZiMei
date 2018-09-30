@@ -24,7 +24,7 @@ import javax.inject.Inject
  abstract class BaseFragment<P : IPresenter<*>> : Fragment(), IView, CommentHelper {
 
     @Inject lateinit var mIPresenter: P
-    @Inject lateinit var mFramApp:FrameApp
+    var mFramApp:FrameApp = FrameApp.frameInstance
     val mHandler: Handler = Handler()
     lateinit var rootView:View
 

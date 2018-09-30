@@ -3,6 +3,7 @@ package com.mmy.guozimei.common
 import android.graphics.Bitmap
 import android.view.KeyEvent
 import android.webkit.*
+import com.google.gson.Gson
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseActivity
@@ -32,9 +33,12 @@ class WebViewActivity : BaseActivity<IPresenter<*>>() {
         webSettings.domStorageEnabled = true
     }
 
+    /**
+     * 当链接Url中拼接有参数时候，用>代替=（‘=’在处理activity传参时候已经被占用），回到这里再替换，
+     */
     override fun initData() {
         if(intent.hasExtra("url")){
-            web_view.loadUrl(intent.getStringExtra("url"))
+            web_view.loadUrl(intent.getStringExtra("url").replace(">","="))
         }
     }
 
@@ -74,10 +78,8 @@ class WebViewActivity : BaseActivity<IPresenter<*>>() {
         finish()
     }
 
-//    override fun finish() {
-//        val view = window.decorView as ViewGroup
-//        view.removeAllViews()
-//        super.finish()
-//    }
-
+    @JavascriptInterface
+    fun  getCurUser():String{
+        return Gson().toJson(mFrameApp?.mAccountInfo)
+    }
 }

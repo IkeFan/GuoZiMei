@@ -136,18 +136,13 @@
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/store_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/store_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            >
-        </android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v7.widget.RecyclerView>
 </android.support.design.widget.CoordinatorLayout>

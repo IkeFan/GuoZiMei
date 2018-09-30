@@ -11,7 +11,7 @@ package com.mmy.frame.data.bean
  *             version: zsr, 2017-09-23
  */
 class StoreBean :IBean(){
-    var data:List<Product>? = null
-    class Product(var title:String? = null, var name:String, var img:Int?=0,
-                  var place:String? = null, var price:String, var payedCount:Int?=0)
+    var data:ArrayList<Product>? = null
+    class Product(var id:Int, var goods_name:String? = null, var goods_remark:String, var logo:String,
+                  var shop_price:String? = null, var market_price:String, var sales_sum:Int?=0)
 }

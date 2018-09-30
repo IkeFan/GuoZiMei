@@ -8,8 +8,10 @@ import com.mmy.frame.AppComponent
 import com.mmy.frame.adapter.BaseQuickAdapter
 import com.mmy.frame.base.view.BaseFragment
 import com.mmy.frame.data.bean.BannerBean
+import com.mmy.frame.data.bean.EventBean
 import com.mmy.frame.data.bean.HomeBean
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.utils.Config
 import com.mmy.guozimei.R
 import com.mmy.guozimei.ScanPicCameraActivity
 import com.mmy.guozimei.city.CitySearchActivity
@@ -20,6 +22,7 @@ import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.home.activities.MastersActivity
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
 import com.mmy.guozimei.modules.home.presenters.HomePresenter
+import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
 
@@ -132,6 +135,13 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/introduction.html")
         }
 
+        mMastersAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
+            var id =   mFramApp?.mAccountInfo?.getIdCheckLogin()
+            if(id!=0){
+                var masterId = mMastersAdapter.getItem(position)?.id
+                openActivity(WebViewActivity::class.java, "url=" + Config.HOST+"/mobile/great/reserve.html?id>$masterId")
+            }
+        }
 
         arrayOf(v_location, v_scan, v_knowledge, v_solution, v_solution_more, v_class,
                 card_knowledge_one, card_knowledge_two, card_knowledge_three, card_knowledge_four,
@@ -187,4 +197,11 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             R.id.v_master_in -> openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/master.html")
         }
     }
+
+    @Subscribe
+    fun onCityGet(eventBean: EventBean){
+        v_location.text = eventBean.meg
+    }
+
+    override fun registerBus(): Boolean = true
 }

@@ -4,15 +4,18 @@ import android.Manifest
 import android.support.design.widget.BottomNavigationView
 import android.util.Log
 import android.view.MenuItem
+import com.blankj.utilcode.util.SPUtils
 import com.mmy.frame.AppComponent
-import com.mmy.frame.base.mvp.IPresenter
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.AccountInfo
-import com.mmy.frame.data.bean.EventBean
 import com.mmy.frame.data.bean.IBean
+import com.mmy.frame.data.bean.LoginBean
 import com.mmy.guozimei.city.DBHelper
+import com.mmy.guozimei.common.DaggerActivityComponent
+import com.mmy.guozimei.common.IViewModule
 import com.mmy.guozimei.helper.BottomNavigationViewHelper
 import com.mmy.guozimei.login.LoginActivity
+import com.mmy.guozimei.login.presenters.LoginPresenter
 import com.mmy.guozimei.modules.home.fragments.HomeFragment
 import com.mmy.guozimei.modules.hospital.fragments.HospitalFragment
 import com.mmy.guozimei.modules.mine.fragments.MineFragment
@@ -20,15 +23,18 @@ import com.mmy.guozimei.modules.store.fragments.StoreFragment
 import com.squareup.otto.Subscribe
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
-class MainActivity : BaseActivity<IPresenter<*>>(){
+class MainActivity : BaseActivity<LoginPresenter>(){
     val mFragmentTags = arrayOf("home", "store", "hospital", "mine")
     val mFragments = arrayOf(HomeFragment(), StoreFragment(), HospitalFragment(), MineFragment())
 
 
     override fun setupDagger(appComponent: AppComponent) {
-
+        DaggerActivityComponent.builder()
+                .appComponent(appComponent)
+                .iViewModule(IViewModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun initView() {
@@ -86,12 +92,25 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
             }
 
         })
+
+        autoLogin()
+    }
+
+    fun autoLogin(){
+        val phone = SPUtils.getInstance().getString("phone", "")
+        val pwd = SPUtils.getInstance().getString("pwd", "")
+        if (!phone.isEmpty() && !pwd.isEmpty()) {
+            mIPresenter.login(phone, pwd)
+        }
     }
 
     override fun getLayoutID(): Any  = R.layout.activity_main
 
     override fun requestSuccess(any: IBean) {
-
+        if(any is LoginBean){
+            mFrameApp?.mAccountInfo = any.data
+            mBus.post(any.data)
+        }
     }
 
     private fun showFragmentByPosition(order: Int) {
@@ -103,7 +122,7 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
             transaction.show(showFragment)
         }
         mFragmentTags.forEach {
-            if (!it.equals(mFragmentTags[order])) {
+            if (it != mFragmentTags[order]) {
                 val fragment = supportFragmentManager.findFragmentByTag(it)
                 if (fragment != null)
                     transaction.hide(fragment)
@@ -117,9 +136,5 @@ class MainActivity : BaseActivity<IPresenter<*>>(){
     @Subscribe
     fun onLoginRequest(accountEvent: AccountInfo.UserEvent){
         openActivity(LoginActivity::class.java)
-    }
-    @Subscribe
-    fun onCityGet(eventBean: EventBean){
-        v_location.text = eventBean.meg
     }
 }

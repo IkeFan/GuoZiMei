@@ -1,6 +1,7 @@
 package com.mmy.guozimei.login
 
 import android.view.View
+import com.blankj.utilcode.util.SPUtils
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.view.BaseActivity
 import com.mmy.frame.data.bean.IBean
@@ -15,10 +16,14 @@ class LoginActivity : BaseActivity<LoginPresenter>(), View.OnClickListener{
     override fun requestSuccess(any: IBean) {
         if(any is LoginBean){
             mFrameApp?.mAccountInfo = any.data
+            SPUtils.getInstance().put("phone",login_account_input.text.trim().toString())
+            SPUtils.getInstance().put("pwd",login_pwd_input.text.trim().toString())
+            mBus.post(any.data)
         }
 //        var intent = Intent(this, MainActivity::class.java)
 //        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
 //        startActivity(intent)
+
         finish()
     }
 

@@ -2,6 +2,7 @@ package com.mmy.guozimei.common
 
 import com.mmy.frame.AppComponent
 import com.mmy.frame.base.annotation.ActivityScope
+import com.mmy.guozimei.MainActivity
 import com.mmy.guozimei.login.LoginActivity
 import com.mmy.guozimei.login.RegisterActivity
 import com.mmy.guozimei.modules.home.activities.MastersActivity
@@ -22,6 +23,7 @@ import dagger.Component
 interface ActivityComponent {
     //inject the activity here which implement IView, just like below
 //    fun inject(mainActivity: MainActivity)
+    fun inject(mainActivity: MainActivity)
     fun inject(registerActivity: RegisterActivity)
     fun inject(loginActivity: LoginActivity)
     fun inject(mastersActivity: MastersActivity)

@@ -84,14 +84,10 @@ interface ApiService {
     @POST("Great/index")
     fun getMasters(@Field("page") page: Int, @Field("limit") limit: Int?=10): Observable<HomeBean>
 
-    //获取资助方列表
-    @POST("Project/chosezhf")
-    fun getSupportList(): Observable<SupportListBean>
-
-    //设为主投资商
+    //获取商品列表
     @FormUrlEncoded
-    @POST("Project/import")
-    fun setMainSupport(@Field("importid") importid: Int): Observable<IBean>
+    @POST("Goods/lists")
+    fun getGoodsList(@Field("page") page: Int, @Field("cid") cid:Int, @Field("limit")limit:Int?=null): Observable<StoreBean>
 
     //发起项目
     @Multipart

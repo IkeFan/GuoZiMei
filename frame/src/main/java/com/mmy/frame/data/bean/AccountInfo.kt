@@ -18,9 +18,9 @@ class AccountInfo {
     var member_id: Int? = null
         get() = if (field == null) 0 else field
     var token: String? = null
-    var name: String? = null
+    var nickname: String? = null
     var type: Int? = 0
-    var headerImg: String? = null
+    var head_pic: String? = null
     var mobile: String? = null
     var email: String? = null
     var lovesum: Int = 0
@@ -45,7 +45,7 @@ class AccountInfo {
             return int
         }
 
-    fun isLogin() = member_id != null
+    fun isLogin() = token != null
 
     companion object {
 

@@ -4,7 +4,8 @@
                 android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/item_img"
-        style="@style/BaseWrap"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:scaleType="fitXY"
         android:src="@mipmap/store_product1"/>
     <TextView
@@ -17,7 +18,8 @@
         />
 
     <LinearLayout
-        style="@style/BaseWrap"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/item_img"
         android:orientation="vertical"
