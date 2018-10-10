@@ -1,1 +1,1 @@
-include ':app',':SweetAlertLibrary','frame'
+include ':app',':SweetAlertLibrary','frame','coverflow'

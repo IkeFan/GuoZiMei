@@ -14,11 +14,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+        debug {
+            minifyEnabled false
+        }
     }
 }
 
 dependencies {
-//    compile 'com.pnikosis:materialish-progress:1.0'
+    //    compile 'com.pnikosis:materialish-progress:1.0'
 }
 
 //apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
