@@ -85,6 +85,44 @@ class HomePresenter @Inject constructor() : IPresenter<IView>() {
         }
     }
 
+    fun getArticle(articleId:Int, type:Int, page: Int, limit: Int, showLoading: Boolean){
+        if(showLoading){
+            mV.showLoading()
+        }
+        mM.request {
+            call = mApi.getArticl(articleId, type, page, limit)
+            _success = {
+                if(showLoading){
+                    mV.hidLoading()
+                }
+                if(it is IBean){
+                    mV.requestSuccess(it)
+                }
+
+            }
+            _fail = {
+                if(showLoading){
+                    mV.hidLoading()
+                }
+                it.message?.showToast(mFrameApp)
+            }
+        }
+    }
+
+    fun getCateArticle(articleId:Int, type: Int, limit: Int){
+        mM.request {
+            call = mApi.getCateArticle(articleId, type, limit)
+            _success = {
+                if(it is IBean){
+                    mV.requestSuccess(it)
+                }
+            }
+            _fail = {
+                it.message?.showToast(mFrameApp)
+            }
+        }
+    }
+
     fun testPay(activity: Activity){
         mPayHelper.pay(activity, 1, PayBean())
     }

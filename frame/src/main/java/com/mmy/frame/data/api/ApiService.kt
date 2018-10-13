@@ -89,23 +89,15 @@ interface ApiService {
     @POST("Goods/lists")
     fun getGoodsList(@Field("page") page: Int, @Field("cid") cid:Int, @Field("limit")limit:Int?=null): Observable<StoreBean>
 
-    //发起项目
-    @Multipart
-    @POST("Project/add")
-    fun addProject(@Part list: List<MultipartBody.Part>): Observable<IBean>
-
-    //获取类型列表
-    @GET("Project/typeList")
-    fun getTypeList(): Observable<ChoiceTypeBean>
-
-    //新增类型
+    //获取文章列表（健康知识 page = 1 limit = 4）
     @FormUrlEncoded
-    @POST("Project/typeAdd")
-    fun addType(@Field("name") name: String): Observable<IBean>
+    @POST("Article/article")
+    fun getArticl(@Field("cid ") articleId: Int, @Field("flag") type: Int, @Field("page") page: Int, @Field("limit") limit: Int? =null): Observable<ArticleBean>
 
-    //获取广告列表
-    @GET("Project/advsList")
-    fun getAdvList(): Observable<AdvListBean>
+    //获取文章分类列表
+    @FormUrlEncoded
+    @POST("Article/catearticle")
+    fun getCateArticle(@Field("cid ") articleId: Int, @Field("flag") type: Int, @Field("limit") limit: Int? =null): Observable<IBean>
 
     //新增广告
     @Multipart
