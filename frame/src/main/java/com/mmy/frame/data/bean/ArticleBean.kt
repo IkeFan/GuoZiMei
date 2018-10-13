@@ -4,7 +4,12 @@ package com.mmy.frame.data.bean
  * Created by fanfuqiang on 2018/10/11.
  */
 class ArticleBean : IBean() {
-    var data: ArrayList<Article>? = null
+    var data: Data? = null
+    class Data{
+        var count:Int? = null
+        var limit:String? = null
+        var data: ArrayList<Article>? = null
+    }
 
     class Article {
         var id: Int? = null

@@ -1,6 +1,7 @@
 package com.mmy.guozimei.common
 
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.KeyEvent
 import android.webkit.*
 import com.google.gson.Gson
@@ -31,6 +32,7 @@ class WebViewActivity : BaseActivity<IPresenter<*>>() {
         webSettings.setSupportZoom(false)
         webSettings.builtInZoomControls = false
         webSettings.domStorageEnabled = true
+        webSettings.userAgentString = "Android-Guozimei"
     }
 
     /**
@@ -38,6 +40,7 @@ class WebViewActivity : BaseActivity<IPresenter<*>>() {
      */
     override fun initData() {
         if(intent.hasExtra("url")){
+            Log.e(TAG, "url = " +intent.getStringExtra("url").replace(">","="))
             web_view.loadUrl(intent.getStringExtra("url").replace(">","="))
         }
     }

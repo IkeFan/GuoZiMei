@@ -91,13 +91,13 @@ interface ApiService {
 
     //获取文章列表（健康知识 page = 1 limit = 4）
     @FormUrlEncoded
-    @POST("Article/article")
-    fun getArticl(@Field("cid ") articleId: Int, @Field("flag") type: Int, @Field("page") page: Int, @Field("limit") limit: Int? =null): Observable<ArticleBean>
+    @POST("Index/article")
+    fun getArticl(@Field("cate") cate: Int, @Field("flag") flag: Int, @Field("page") page: Int, @Field("limit") limit: Int? =null): Observable<ArticleBean>
 
     //获取文章分类列表
     @FormUrlEncoded
-    @POST("Article/catearticle")
-    fun getCateArticle(@Field("cid ") articleId: Int, @Field("flag") type: Int, @Field("limit") limit: Int? =null): Observable<IBean>
+    @POST("Index/catearticle")
+    fun getCateArticle(@Field("cate") cate: Int, @Field("flag") flag: Int, @Field("limit") limit: Int? =null): Observable<ArticleCategoryBean>
 
     //新增广告
     @Multipart

@@ -85,12 +85,12 @@ class HomePresenter @Inject constructor() : IPresenter<IView>() {
         }
     }
 
-    fun getArticle(articleId:Int, type:Int, page: Int, limit: Int, showLoading: Boolean){
+    fun getArticle(cate:Int, flag:Int, page: Int, limit: Int, showLoading: Boolean){
         if(showLoading){
             mV.showLoading()
         }
         mM.request {
-            call = mApi.getArticl(articleId, type, page, limit)
+            call = mApi.getArticl(cate, flag, page, limit)
             _success = {
                 if(showLoading){
                     mV.hidLoading()
@@ -109,9 +109,9 @@ class HomePresenter @Inject constructor() : IPresenter<IView>() {
         }
     }
 
-    fun getCateArticle(articleId:Int, type: Int, limit: Int){
+    fun getCateArticle(cate:Int, type: Int, limit: Int){
         mM.request {
-            call = mApi.getCateArticle(articleId, type, limit)
+            call = mApi.getCateArticle(cate, type, limit)
             _success = {
                 if(it is IBean){
                     mV.requestSuccess(it)

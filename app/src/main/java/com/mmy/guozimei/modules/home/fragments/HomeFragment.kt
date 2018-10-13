@@ -1,6 +1,5 @@
 package com.mmy.guozimei.modules.home.fragments
 
-import android.content.Context
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
@@ -19,6 +18,7 @@ import com.mmy.guozimei.common.DaggerFragmentComponent
 import com.mmy.guozimei.common.IViewModule
 import com.mmy.guozimei.common.WebViewActivity
 import com.mmy.guozimei.modules.home.activities.MastersActivity
+import com.mmy.guozimei.modules.home.adapters.HomeCateArticleAdapter
 import com.mmy.guozimei.modules.home.adapters.HomeMastersAdapter
 import com.mmy.guozimei.modules.home.presenters.HomePresenter
 import com.squareup.otto.Subscribe
@@ -42,6 +42,7 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
     }
 
     val mMastersAdapter = HomeMastersAdapter(R.layout.adapter_master)
+    val mCateArticleAdapter = HomeCateArticleAdapter(R.layout.item_home_article_cate)
     var mBannerAdapter:BannerAdapter? = null
 
     override fun requestSuccess(any: IBean) {
@@ -64,48 +65,56 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             }
             is ArticleBean ->{
                 var i=0
-                any.data?.forEach{
+
+                any.data?.data?.forEach{
                     when(i){
                         0->{
                             Glide.with(this)
                                     .load(Config.HOST + it.litpic)
-                                    .error(R.mipmap.knowledge_one)
-                                    .placeholder(R.mipmap.knowledge_one)
+                                    .error(R.mipmap.ic_launcher)
+                                    .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_one)
                             knowledge_one_text.text = it.title
                             knowledge_one_description.text = it.description
+                            knowledge_one_text.tag = it.id
                         }
                         1->{
                             Glide.with(this)
                                     .load(Config.HOST + it.litpic)
-                                    .error(R.mipmap.knowledge_two)
-                                    .placeholder(R.mipmap.knowledge_two)
+                                    .error(R.mipmap.ic_launcher)
+                                    .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_two)
                             knowledge_two_text.text = it.title
                             knowledge_two_description.text = it.description
+                            knowledge_two_text.tag = it.id
                         }
                         2->{
                             Glide.with(this)
                                     .load(Config.HOST + it.litpic)
-                                    .error(R.mipmap.knowledge_three)
-                                    .placeholder(R.mipmap.knowledge_three)
-                                    .into(knowledge_two)
+                                    .error(R.mipmap.ic_launcher)
+                                    .placeholder(R.mipmap.ic_launcher)
+                                    .into(knowledge_three)
                             knowledge_three_text.text = it.title
                             knowledge_three_description.text = it.description
+                            knowledge_three_text.tag = it.id
                         }
                         3->{
                             Glide.with(this)
                                     .load(Config.HOST + it.litpic)
-                                    .error(R.mipmap.knowledge_four)
-                                    .placeholder(R.mipmap.knowledge_four)
+                                    .error(R.mipmap.ic_launcher)
+                                    .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_four)
                             knowledge_four_text.text = it.title
                             knowledge_four_description.text = it.description
+                            knowledge_four_text.tag = it.id
                         }
                     }
                     i++
                 }
-                mIPresenter.getCateArticle(17, 1, 10)
+                mIPresenter.getCateArticle(18, 1, 10)
+            }
+            is ArticleCategoryBean ->{
+                mCateArticleAdapter.setNewData(any.data)
             }
         }
     }
@@ -124,6 +133,8 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         home_master_list.adapter = mMastersAdapter
         home_master_list.layoutManager = LinearLayoutManager(getAc())
         mMastersAdapter.setEnableLoadMore(true)
+        article_cate_list.layoutManager = LinearLayoutManager(getAc())
+        article_cate_list.adapter = mCateArticleAdapter
     }
 
     private fun initBanner( data: ArrayList<BannerBean.Banner>){
@@ -183,8 +194,6 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                     dragging = false
                 }, 600)
             }
-
-
         })
 
         mMastersAdapter.setOnItemClickListener { adapter, view, baseViewHolder, position ->
@@ -199,9 +208,26 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             }
         }
 
+        mCateArticleAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener{ adapter, view, position ->
+            when(view.id){
+                R.id.item_more ->{
+                    var id =   mCateArticleAdapter.getItem(position)?.id
+                    openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/plan/cid/$id.html")
+                }
+                R.id.left_img ->{
+                    var id =   mCateArticleAdapter.getItem(position)?.list?.get(0)?.id
+                    openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+                }
+                R.id.right_img ->{
+                    var id =   mCateArticleAdapter.getItem(position)?.list?.get(1)?.id
+                    openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+                 }
+            }
+         }
+
         arrayOf(v_location, v_scan, v_knowledge, v_solution, v_solution_more, v_class,
                 card_knowledge_one, card_knowledge_two, card_knowledge_three, card_knowledge_four,
-                iv_solution, iv_health_1, iv_health_2,
+                iv_solution,
                 v_test, v_home_consult, v_master_in, v_activities, v_book, v_knowledge_more, v_book_more).setViewListener(this)
     }
 
@@ -246,10 +272,23 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
             R.id.v_class -> openActivity(WebViewActivity::class.java,"url="+"http://4.soowww.com/mobile/article/room.html")
             R.id.v_activities -> openActivity(WebViewActivity::class.java, "url="+"http://4.soowww.com/mobile/article/activity.html")
             R.id.v_test -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/testing.html")
-            R.id.card_knowledge_one,
-            R.id.card_knowledge_two,
-            R.id.card_knowledge_three,
-            R.id.card_knowledge_four->{openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/smooth.html")}
+            R.id.v_knowledge_more-> openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/knowledge.html")
+            R.id.card_knowledge_one ->{
+                var id = knowledge_one_text.tag
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+            }
+            R.id.card_knowledge_two ->{
+                var id = knowledge_two_text.tag
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+            }
+            R.id.card_knowledge_three->{
+                var id = knowledge_three_text.tag
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+            }
+            R.id.card_knowledge_four->{
+                var id = knowledge_four_text.tag
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
+            }
             R.id.v_home_consult -> openActivity(WebViewActivity::class.java, "url = " + "http://1.soowww.com/consult.html")
             R.id.v_master_in -> openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/master.html")
         }
