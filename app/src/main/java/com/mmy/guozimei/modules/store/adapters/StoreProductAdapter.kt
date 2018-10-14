@@ -27,8 +27,8 @@ class StoreProductAdapter(@LayoutRes id:Int): BaseQuickAdapter<StoreBean.Product
 
         Glide.with(mContext)
                 .load(Config.HOST+item?.logo)
-                .placeholder(R.mipmap.ic_default_portrait)
-                .error(R.mipmap.ic_default_portrait)
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
                 .into(helper?.getView(R.id.item_img))
     }
 }
