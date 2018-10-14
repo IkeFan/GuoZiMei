@@ -38,7 +38,7 @@ class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLo
                if(any.data == null || any.data!!.isEmpty()){
                    mAdapter.loadMoreEnd()
                }
-               else if(mAdapter.data.size>0) {
+               else if(mAdapter.data.size==0) {
                    mAdapter.setNewData(any.data)
                }
                else{
@@ -93,6 +93,8 @@ class StoreFragment : BaseFragment<StorePresenter>() ,BaseQuickAdapter.RequestLo
             }
         })
 
-        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, baseViewHolder, position -> openActivity(WebViewActivity::class.java, "url="+"http://1.soowww.com/details.html") }
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, baseViewHolder, position ->
+            var id = mAdapter.getItem(position)?.id
+            openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/good/detail/id/$id.html") }
     }
 }
