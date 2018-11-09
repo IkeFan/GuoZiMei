@@ -6,6 +6,6 @@ package com.mmy.frame.data.bean
 class HospitalBean:IBean(){
     var data:List<Hospital>? = null
 
-    class Hospital(var name:String?="", var payed:Int?=0, var logo:Int?=0, var leve:Int? = 0,
-                   var common:Int?=0, var title:String?="", var location:String?="")
+    class Hospital(var id:Int, var ac_id:Int, var title:String?="", var short_title:String?="", var author:String?="", var litpic:String? = "",
+                   var description:String?="", var click:Int?=null, var publish_time:Int, var jump_url:String)
 }

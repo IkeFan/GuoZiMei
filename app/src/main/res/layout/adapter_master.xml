@@ -43,6 +43,7 @@
                 android:id="@+id/item_age"
                 style="@style/text_small"
                 android:layout_marginLeft="5dp"
+                android:visibility="invisible"
                 android:text="66" />
         </LinearLayout>
         <TextView
@@ -89,6 +90,7 @@
             android:textColor="@color/white"
             android:background="@drawable/green_btn_bg"
             android:layout_marginRight="10dp"
+            android:visibility="invisible"
             android:text="学习咨询"/>
         <TextView
             android:id="@+id/item_book_now"

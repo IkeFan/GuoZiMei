@@ -15,7 +15,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="490dp"
+            android:layout_height="510dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
@@ -130,24 +130,29 @@
                         style="@style/text_small"
                         android:layout_alignParentRight="true"
                         android:text="---+ 更多"
+                        android:visibility="invisible"
                         android:textColor="#adadad"/>
                 </RelativeLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="horizontal"
                     >
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        >
 
                         <ImageView
                             android:id="@+id/special_img1"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_alignParentRight="true"
                             android:scaleType="fitXY"
                             android:src="@mipmap/pic_special_1"/>
@@ -168,6 +173,7 @@
                                 android:textColor="@color/green"/>
 
                             <TextView
+                                android:id="@+id/special_img1_text"
                                 style="@style/mine_text_black"
                                 android:layout_centerHorizontal="true"
                                 android:text="红枣银耳羹"
@@ -176,12 +182,16 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:layout_marginLeft="10dp">
 
                         <ImageView
                             android:id="@+id/special_img2"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/pic_special_2"/>
 
                         <RelativeLayout
@@ -201,6 +211,7 @@
 
                             <TextView
                                 style="@style/mine_text_black"
+                                android:id="@+id/special_img2_text"
                                 android:layout_centerHorizontal="true"
                                 android:text="五谷杂粮"
                                 android:textColor="@color/white"/>
@@ -209,12 +220,15 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:layout_marginLeft="10dp">
 
                         <ImageView
                             android:id="@+id/special_img3"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@mipmap/pic_special_3"/>
 
@@ -235,6 +249,7 @@
 
                             <TextView
                                 style="@style/mine_text_black"
+                                android:id="@+id/special_img3_text"
                                 android:layout_centerHorizontal="true"
                                 android:text="红豆莲子粥"
                                 android:textColor="@color/white"/>
@@ -265,25 +280,29 @@
                         style="@style/text_small"
                         android:layout_alignParentRight="true"
                         android:text="---+ 更多"
+                        android:visibility="invisible"
                         android:textColor="#adadad"/>
                 </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="horizontal"
                     >
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
                         <ImageView
                             android:id="@+id/cure_img1"
-                            style="@style/BaseWrap"
-                            android:layout_alignParentRight="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:scaleType="fitXY"
+                            android:layout_alignParentRight="true"
                             android:src="@mipmap/pic_cure1"/>
 
                         <RelativeLayout
@@ -302,6 +321,7 @@
                                 android:textColor="@color/green"/>
 
                             <TextView
+                                android:id="@+id/cure_img1_text"
                                 style="@style/mine_text_black"
                                 android:layout_centerHorizontal="true"
                                 android:text="@string/acupuncture"
@@ -310,12 +330,16 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:layout_marginLeft="10dp">
 
                         <ImageView
                             android:id="@+id/cure_img2"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/pic_cure2"/>
 
                         <RelativeLayout
@@ -334,6 +358,7 @@
                                 android:textColor="@color/green"/>
 
                             <TextView
+                                android:id="@+id/cure_img2_text"
                                 style="@style/mine_text_black"
                                 android:layout_centerHorizontal="true"
                                 android:text="@string/cupping"
@@ -343,12 +368,15 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        style="@style/BaseWeightWrapW"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:layout_marginLeft="10dp">
 
                         <ImageView
                             android:id="@+id/cure_img3"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@mipmap/pic_cure3"/>
 
@@ -368,6 +396,7 @@
                                 android:textColor="@color/green"/>
 
                             <TextView
+                                android:id="@+id/cure_img3_text"
                                 style="@style/mine_text_black"
                                 android:layout_centerHorizontal="true"
                                 android:text="@string/massage"
@@ -405,6 +434,7 @@
                         style="@style/text_small"
                         android:layout_alignParentRight="true"
                         android:text="---+ 更多"
+                        android:visibility="invisible"
                         android:textColor="#adadad"/>
                 </RelativeLayout>
                 <View

@@ -3,6 +3,7 @@ package com.mmy.guozimei.modules.home.fragments
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.mmy.frame.AppComponent
@@ -74,8 +75,8 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                                     .error(R.mipmap.ic_launcher)
                                     .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_one)
-                            knowledge_one_text.text = it.title
-                            knowledge_one_description.text = it.description
+                            knowledge_one_text.text = it.short_title
+//                            knowledge_one_description.text = it.description
                             knowledge_one_text.tag = it.id
                         }
                         1->{
@@ -84,8 +85,8 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                                     .error(R.mipmap.ic_launcher)
                                     .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_two)
-                            knowledge_two_text.text = it.title
-                            knowledge_two_description.text = it.description
+                            knowledge_two_text.text = it.short_title
+//                            knowledge_two_description.text = it.description
                             knowledge_two_text.tag = it.id
                         }
                         2->{
@@ -94,8 +95,8 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                                     .error(R.mipmap.ic_launcher)
                                     .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_three)
-                            knowledge_three_text.text = it.title
-                            knowledge_three_description.text = it.description
+                            knowledge_three_text.text = it.short_title
+//                            knowledge_three_description.text = it.description
                             knowledge_three_text.tag = it.id
                         }
                         3->{
@@ -104,14 +105,14 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                                     .error(R.mipmap.ic_launcher)
                                     .placeholder(R.mipmap.ic_launcher)
                                     .into(knowledge_four)
-                            knowledge_four_text.text = it.title
-                            knowledge_four_description.text = it.description
+                            knowledge_four_text.text = it.short_title
+//                            knowledge_four_description.text = it.description
                             knowledge_four_text.tag = it.id
                         }
                     }
                     i++
                 }
-                mIPresenter.getCateArticle(18, 1, 10)
+                mIPresenter.getCateArticle(18, 1, 2)
             }
             is ArticleCategoryBean ->{
                 mCateArticleAdapter.setNewData(any.data)
@@ -197,7 +198,10 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
         })
 
         mMastersAdapter.setOnItemClickListener { adapter, view, baseViewHolder, position ->
-            openActivity(WebViewActivity::class.java,"url=" + "http://1.soowww.com/introduction.html")
+            var masterId = mMastersAdapter.getItem(position)?.id
+            if(masterId!=null){
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/great/detail/id/$masterId.htm")
+            }
         }
 
         mMastersAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
@@ -216,10 +220,12 @@ class HomeFragment: BaseFragment<HomePresenter>(), BaseQuickAdapter.RequestLoadM
                 }
                 R.id.left_img ->{
                     var id =   mCateArticleAdapter.getItem(position)?.list?.get(0)?.id
+                    Log.e("fuck","fack id"+id +"tile："+ mCateArticleAdapter.getItem(position)?.list?.get(1)?.title)
                     openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
                 }
                 R.id.right_img ->{
                     var id =   mCateArticleAdapter.getItem(position)?.list?.get(1)?.id
+                    Log.e("fuck","fack id"+id +"tile："+ mCateArticleAdapter.getItem(position)?.list?.get(1)?.title)
                     openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/article/detail/id/$id.html")
                  }
             }

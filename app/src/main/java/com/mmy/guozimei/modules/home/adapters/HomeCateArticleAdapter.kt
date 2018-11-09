@@ -14,20 +14,33 @@ class HomeCateArticleAdapter(resId:Int) :BaseQuickAdapter<ArticleCategoryBean.Ar
     override fun convert(helper: BaseViewHolder?, item: ArticleCategoryBean.ArticleCategory) {
         helper?.setText(R.id.item_name, item.name)
         var i= 0
+
+        helper?.setText(R.id.left_title, item?.list?.get(0)?.title+">")
+        Glide.with(mContext)
+                .load(Config.HOST + item?.list?.get(0)?.litpic)
+                .error(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(helper?.getView(R.id.left_img))
+        helper?.setText(R.id.left_title, item?.list?.get(1)?.title+">")
+        Glide.with(mContext)
+                .load(Config.HOST + item?.list?.get(1)?.litpic)
+                .error(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(helper?.getView(R.id.right_img))
         item?.list?.forEach {
             when(i){
                 0->{
-                    helper?.setText(R.id.left_title, item?.list?.get(i)?.title+">")
+                    helper?.setText(R.id.left_title, item?.list?.get(0)?.title+">")
                     Glide.with(mContext)
-                            .load(Config.HOST + item?.list?.get(i)?.litpic)
-                            .error(R.mipmap.ic_default_portrait)
-                            .placeholder(R.mipmap.ic_default_portrait)
+                            .load(Config.HOST + item?.list?.get(0)?.litpic)
+                            .error(R.mipmap.ic_launcher)
+                            .placeholder(R.mipmap.ic_launcher)
                             .into(helper?.getView(R.id.left_img))
                 }
                 1->{
-                    helper?.setText(R.id.left_title, item?.list?.get(i)?.title+">")
+                    helper?.setText(R.id.right_title, item?.list?.get(1)?.title+">")
                     Glide.with(mContext)
-                            .load(Config.HOST + item?.list?.get(i)?.litpic)
+                            .load(Config.HOST + item?.list?.get(1)?.litpic)
                             .error(R.mipmap.ic_launcher)
                             .placeholder(R.mipmap.ic_launcher)
                             .into(helper?.getView(R.id.right_img))

@@ -70,6 +70,13 @@ class MastersActivity : BaseActivity<HomePresenter>() {
                 openActivity(WebViewActivity::class.java, "url=" + Config.HOST+"/mobile/great/reserve.html?id>$masterId")
             }
         }
+
+        mMastersAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, baseViewHolder, position ->
+            var masterId = mMastersAdapter.getItem(position)?.id
+            if(masterId!=null){
+                openActivity(WebViewActivity::class.java, "url=http://4.soowww.com/mobile/great/detail/id/$masterId.htm")
+            }
+        }
     }
 
     override fun getLayoutID(): Any  = R.layout.activity_masters

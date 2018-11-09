@@ -12,7 +12,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="1150dp"
+            android:layout_height="1230dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <LinearLayout
@@ -198,21 +198,28 @@
                         android:textColor="@color/line_color" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    style="@style/BaseWrap"
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="6dp"
                     android:gravity="center">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/card_knowledge_one"
-                        style="@style/BaseWrap"
-                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="13dp"
                         app:cardElevation="10dp">
 
                         <ImageView
                             android:id="@+id/knowledge_one"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/knowledge_one" />
 
                         <RelativeLayout
@@ -240,6 +247,7 @@
                                 android:maxLines="2"
                                 android:text="流汗是自律人生的礼赞"
                                 android:ellipsize="end"
+                                android:visibility="gone"
                                 android:maxWidth="140dp"
                                 android:textColor="@color/green" />
                         </RelativeLayout>
@@ -247,13 +255,17 @@
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/card_knowledge_two"
-                        style="@style/BaseWrap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:layout_toRightOf="@+id/card_knowledge_one"
                         app:cardElevation="10dp">
 
                         <ImageView
                             android:id="@+id/knowledge_two"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/knowledge_two" />
 
                         <RelativeLayout
@@ -269,7 +281,6 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginBottom="5dp"
                                 android:text="HIIT-畅快流汗"
-                                android:maxWidth="140dp"
                                 android:textColor="@color/white" />
 
                             <TextView
@@ -278,6 +289,7 @@
                                 android:layout_below="@+id/knowledge_two_text"
                                 android:layout_centerHorizontal="true"
                                 android:layout_gravity="center"
+                                android:visibility="gone"
                                 android:maxLines="2"
                                 android:text="流汗是自律人生的礼赞"
                                 android:ellipsize="end"
@@ -286,17 +298,29 @@
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp">
+
                     <android.support.v7.widget.CardView
                         android:id="@+id/card_knowledge_three"
-                        style="@style/BaseWrap"
-                        android:layout_below="@+id/card_knowledge_one"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="13dp"
                         app:cardElevation="10dp">
 
                         <ImageView
                             android:id="@+id/knowledge_three"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/knowledge_three" />
 
                         <RelativeLayout
@@ -312,7 +336,6 @@
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginBottom="5dp"
                                 android:text="HIIT-畅快流汗"
-                                android:maxWidth="140dp"
                                 android:textColor="@color/white" />
 
                             <TextView
@@ -323,6 +346,7 @@
                                 android:layout_gravity="center"
                                 android:maxLines="2"
                                 android:text="流汗是自律人生的礼赞"
+                                android:visibility="gone"
                                 android:ellipsize="end"
                                 android:maxWidth="140dp"
                                 android:textColor="@color/green" />
@@ -331,15 +355,16 @@
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/card_knowledge_four"
-                        style="@style/BaseWrap"
-                        android:layout_below="@id/card_knowledge_two"
-                        android:layout_marginTop="20dp"
-                        android:layout_toRightOf="@id/card_knowledge_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         app:cardElevation="10dp">
 
                         <ImageView
                             android:id="@+id/knowledge_four"
-                            style="@style/BaseWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
                             android:src="@mipmap/knowledge_four" />
 
                         <RelativeLayout
@@ -354,8 +379,6 @@
                                 style="@style/text_middle"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginBottom="5dp"
-                                android:text="HIIT-畅快流汗"
-                                android:maxWidth="140dp"
                                 android:textColor="@color/white" />
 
                             <TextView
@@ -366,12 +389,13 @@
                                 android:layout_gravity="center"
                                 android:maxLines="2"
                                 android:text="流汗是自律人生的礼赞"
+                                android:visibility="gone"
                                 android:ellipsize="end"
                                 android:maxWidth="140dp"
                                 android:textColor="@color/green" />
                         </RelativeLayout>
                     </android.support.v7.widget.CardView>
-                </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/v_solution_more"
